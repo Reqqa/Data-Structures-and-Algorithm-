@@ -1,7 +1,6 @@
 public class Schedule implements Comparable<Schedule> {
 
-    // Fields match CSV column order
-    // Job_ID, Project_Name, Sector, Investment_RM_Billion, Jobs_Created, Deadline_Slot
+    //Class File
     private String id;
     private String projectName;
     private String sector;
@@ -9,6 +8,7 @@ public class Schedule implements Comparable<Schedule> {
     private int    jobsCreated;  // Jobs_Created
     private int    deadline;     // Deadline_Slot
 
+    //Setters 
     public Schedule(String id, String projectName, String sector,
                     double profit, int jobsCreated, int deadline) {
         this.id          = id;
