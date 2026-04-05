@@ -88,7 +88,7 @@ public class Main {
                     System.out.println("[!] DP algorithm not yet implemented.");
                     break;
                 case 4:
-                    // solver = new GeneticAlgorithmSolver();
+                    solver = new GeneticAlgorithmSolver();
                     break;
                 default:
                     System.out.println("[!] Invalid algorithm selection.");
