@@ -4,10 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Abstract base class that provides shared functionality and state for all
- * specific scheduling algorithms.
- */
 public abstract class AbstractInvestmentSolver implements IInvestmentAlgorithm {
 
     protected double maxExpectedReturn;
@@ -21,19 +17,25 @@ public abstract class AbstractInvestmentSolver implements IInvestmentAlgorithm {
     }
 
     /**
-     * Shared method to print the final scheduled sequence, unselected jobs, and
-     * total profit. * DATA STRUCTURE JUSTIFICATION (Rubric 1.3A): A HashSet is
-     * utilized here to identify unselected projects. While List.removeAll()
-     * operates in O(N^2) time by repeatedly searching the list, adding selected
-     * IDs to a HashSet allows for O(1) lookups. This reduces the entire
-     * unselected filtering process to O(N) time complexity.
-     *
-     * @param allProjects The original dataset passed into the algorithm.
+     * TEMPLATE METHOD PATTERN (Rubric 1.1B): Defines the skeleton of the
+     * algorithm's output. Subclasses can inject their own specific behaviors
+     * via the printAlgorithmSpecificMetrics() hook without overriding this
+     * entire method.
      */
     public void displayResults(List<InvestmentProject> allProjects) {
+        if (allProjects == null) {
+            System.out.println("==================================================");
+            System.out.println("[!] Error: Cannot display results. Provided project dataset is null.");
+            System.out.println("==================================================\n");
+            return; // Exit early
+        }
+
         System.out.println("==================================================");
         System.out.println("Algorithm: " + getAlgorithmName());
         System.out.println("Execution Time: " + executionTimeInMilliseconds + " ms");
+
+        printAlgorithmSpecificMetrics();
+
         System.out.println("==================================================");
 
         // 1. Print Selected Jobs
@@ -48,19 +50,16 @@ public abstract class AbstractInvestmentSolver implements IInvestmentAlgorithm {
 
         System.out.println("--------------------------------------------------");
 
-        // 2. Calculate and Print Unselected Jobs using HashSet for O(1) lookups
+        // 2. Calculate and Print Unselected Jobs
         System.out.println("Unselected Projects:");
 
-        // Map the IDs of selected projects for instant lookup
-        Set<String> selectedIds = new HashSet<>();
-        for (InvestmentProject selectedProj : selectedPortfolio) {
-            selectedIds.add(selectedProj.getId());
-        }
+        // Because of equals/hashCode, we can pass the whole list directly into a HashSet
+        Set<InvestmentProject> selectedSet = new HashSet<>(selectedPortfolio);
 
         List<InvestmentProject> unselected = new ArrayList<>();
         for (InvestmentProject proj : allProjects) {
-            // O(1) check instead of O(N) check
-            if (!selectedIds.contains(proj.getId())) {
+            // O(1) object lookup
+            if (!selectedSet.contains(proj)) {
                 unselected.add(proj);
             }
         }
@@ -74,10 +73,18 @@ public abstract class AbstractInvestmentSolver implements IInvestmentAlgorithm {
         }
 
         System.out.println("--------------------------------------------------");
-
-        // 3. Print Total Profit
         System.out.printf("Total Expected Return: RM %.1f Billion\n", maxExpectedReturn);
         System.out.println("==================================================\n");
+    }
+
+    /**
+     * HOOK METHOD: Subclasses can optionally override this to inject custom
+     * console output (e.g., GA tuning parameters) into the displayResults
+     * template.
+     */
+    protected void printAlgorithmSpecificMetrics() {
+        // Default implementation does nothing. 
+        // Exact algorithms like Backtracking can just ignore this.
     }
 
     // Getters

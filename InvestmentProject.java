@@ -1,9 +1,12 @@
 
+import java.util.Objects;
+
 /**
- * Represents a single financial investment project for the Job Sequencing Problem.
- * Implements Comparable to allow natural sorting by maximum expected profit.
+ * Represents a single financial investment project for the Job Sequencing
+ * Problem. Implements Comparable to allow natural sorting by maximum expected
+ * profit.
  */
-public class InvestmentProject implements Comparable<InvestmentProject> {
+public class InvestmentProject implements ISchedulableProject, Comparable<InvestmentProject> {
 
     // --- Attributes ---
     private String id;
@@ -43,6 +46,39 @@ public class InvestmentProject implements Comparable<InvestmentProject> {
         this.profit = profit;
         this.jobsCreated = jobsCreated;
         this.deadline = deadline;
+    }
+
+    /**
+     * Determines if this project can be legally scheduled in the given time
+     * slot. Encapsulates the deadline logic within the domain object.
+     */
+    public boolean isSchedulableAt(int timeSlot) {
+        // timeSlot is 1-indexed (Slot 1, Slot 2). 
+        // Must be less than or equal to the deadline.
+        return timeSlot <= this.deadline;
+    }
+
+    /**
+     * Two projects are considered identical if they have the same unique ID.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InvestmentProject that = (InvestmentProject) o;
+        return Objects.equals(id, that.id);
+    }
+
+    /**
+     * Hashes the object based purely on its unique ID.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     // --- Getters ---

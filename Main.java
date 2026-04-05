@@ -33,20 +33,21 @@ public class Main {
                 System.out.print("Enter your choice: ");
 
                 int dataChoice = getUserInput();
+                IDataLoader dataLoader = null; // Use the interface polymorphically!
 
                 if (dataChoice == 0) {
                     running = false;
                     System.out.println("Exiting system. Goodbye!");
-                    break; // Exit the loop entirely
+                    break;
                 } else if (dataChoice == 1) {
                     System.out.print("Enter the filename (e.g., dataset.csv): ");
                     String filename = scanner.nextLine();
-                    projects = readFromFile(filename);
+                    dataLoader = new CsvDataLoader(filename);
                 } else if (dataChoice == 2) {
                     System.out.print("Enter the number of projects to generate: ");
                     int count = getUserInput();
                     if (count > 0) {
-                        projects = generateRandomData(count);
+                        dataLoader = new RandomDataLoader(count);
                     } else {
                         System.out.println("[!] Invalid number. Returning to menu.");
                         continue;
@@ -56,7 +57,11 @@ public class Main {
                     continue;
                 }
 
-                // If data loading failed, restart the loop to ask again
+                // Execute the polymorphic load method
+                if (dataLoader != null) {
+                    projects = dataLoader.loadData();
+                }
+
                 if (projects == null || projects.isEmpty()) {
                     System.out.println("[!] No valid data loaded. Please try again.");
                     continue;

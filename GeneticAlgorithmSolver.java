@@ -119,7 +119,9 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
         Set<String> addedIds = new HashSet<>();
         for (int i = 0; i < bestSolution.genes.length; i++) {
             InvestmentProject proj = bestSolution.genes[i];
-            if (proj != null && i < proj.getDeadline() && !addedIds.contains(proj.getId())) {
+
+            // Unified domain logic. (i + 1) perfectly aligns the 0-indexed array with 1-indexed time slots.
+            if (proj != null && proj.isSchedulableAt(i + 1) && !addedIds.contains(proj.getId())) {
                 this.selectedPortfolio.add(proj);
                 this.maxExpectedReturn += proj.getProfit();
                 addedIds.add(proj.getId());
@@ -188,24 +190,45 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
 
         public void calculateFitness() {
             fitness = 0.0;
-            Set<String> seenIds = new HashSet<>();
+            // Now stores the object, not just the ID string
+            Set<InvestmentProject> seenProjects = new HashSet<>();
+
             for (int i = 0; i < genes.length; i++) {
                 InvestmentProject p = genes[i];
                 if (p == null) {
                     continue;
                 }
-                if (seenIds.contains(p.getId()) || i >= p.getDeadline()) {
+
+                // Using the smart helper method (i + 1 because array is 0-indexed, slots are 1-indexed)
+                boolean isLate = !p.isSchedulableAt(i + 1);
+
+                if (seenProjects.contains(p) || isLate) {
                     fitness += PENALTY;
                 } else {
                     fitness += p.getProfit();
                 }
-                seenIds.add(p.getId());
+                seenProjects.add(p);
             }
         }
 
         @Override
         public int compareTo(Chromosome other) {
+            // Sorts in descending order (highest fitness first)
             return Double.compare(other.fitness, this.fitness);
         }
+    }
+
+    /**
+     * Overrides the hook in AbstractInvestmentSolver to print GA-specific
+     * tuning parameters without rewriting the whole display loop.
+     */
+    @Override
+    protected void printAlgorithmSpecificMetrics() {
+        System.out.println("GA Configuration: ");
+        System.out.println("  - Population Size : " + populationSize);
+        System.out.println("  - Max Generations : " + maxGenerations);
+        System.out.println("  - Elitism Count   : " + elitismCount);
+        System.out.printf("  - Crossover Rate  : %.0f%%\n", (crossoverRate * 100));
+        System.out.printf("  - Mutation Rate   : %.0f%%\n", (mutationRate * 100));
     }
 }
