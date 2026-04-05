@@ -21,7 +21,7 @@ public class Main {
             List<InvestmentProject> projects = new ArrayList<>();
 
             // ---------------------------------------------------------
-            // STEP 1: Handle Data Input (Rubric 1.5A & 1.6)
+            // STEP 1: Handle Data Input
             // ---------------------------------------------------------
             System.out.println("\n[ Data Selection Menu ]");
             System.out.println("1. Read dataset from external CSV file");
@@ -62,7 +62,7 @@ public class Main {
             System.out.println("[+] Successfully loaded " + projects.size() + " projects.");
 
             // ---------------------------------------------------------
-            // STEP 2: Algorithm Selection (Rubric 1.5A)
+            // STEP 2: Algorithm Selection
             // ---------------------------------------------------------
             System.out.println("  Select Algorithm");
             System.out.println("  1 Backtracking Algorithm");
@@ -94,9 +94,8 @@ public class Main {
                 default:
                     System.out.println("[!] Invalid algorithm selection.");
             }
-
-// ---------------------------------------------------------
-            // STEP 3: Execute and Display (Rubric 1.5B)
+            // ---------------------------------------------------------
+            // STEP 3: Execute and Display
             // ---------------------------------------------------------
             if (solver != null) {
                 System.out.println("\n[ Original Dataset ]");
@@ -115,7 +114,7 @@ public class Main {
     }
 
     // =========================================================
-    // HELPER METHODS FOR ROBUSTNESS (Rubric 1.6)
+    // HELPER METHODS FOR ROBUSTNESS
     // =========================================================
     /**
      * Safely reads an integer from the user without crashing on text input.
