@@ -31,26 +31,29 @@ public class Main {
 
             int dataChoice = getUserInput();
 
-            if (dataChoice == 0) {
-                running = false;
-                System.out.println("Exiting system. Goodbye!");
-                continue;
-            } else if (dataChoice == 1) {
-                System.out.print("Enter the filename (e.g., dataset.csv): ");
-                String filename = scanner.nextLine();
-                projects = readFromFile(filename);
-            } else if (dataChoice == 2) {
-                System.out.print("Enter the number of projects to generate: ");
-                int count = getUserInput();
-                if (count > 0) {
-                    projects = generateRandomData(count);
-                } else {
-                    System.out.println("[!] Invalid number. Returning to menu.");
+            switch (dataChoice) {
+                case 0:
+                    running = false;
+                    System.out.println("Exiting system. Goodbye!");
                     continue;
-                }
-            } else {
-                System.out.println("[!] Invalid choice. Please select 1, 2, or 0.");
-                continue;
+                case 1:
+                    System.out.print("Enter the filename (e.g., dataset.csv): ");
+                    String filename = scanner.nextLine();
+                    projects = readFromFile(filename);
+                    break;
+                case 2:
+                    System.out.print("Enter the number of projects to generate: ");
+                    int count = getUserInput();
+                    if (count > 0) {
+                        projects = generateRandomData(count);
+                    } else {
+                        System.out.println("[!] Invalid number. Returning to menu.");
+                        continue;
+                    }
+                    break;
+                default:
+                    System.out.println("[!] Invalid choice. Please select 1, 2, or 0.");
+                    continue;
             }
 
             // If data loading failed or was empty, restart the loop
