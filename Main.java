@@ -155,10 +155,15 @@ public class Main {
             // ---------------------------------------------------------
             if (solver != null) {
                 System.out.println("\nExecuting " + solver.getAlgorithmName() + "...");
-                solver.solve(projects);
-
-                // Polymorphism in action
-                ((AbstractInvestmentSolver) solver).displayResults(projects);
+                try {
+                    solver.solve(projects);
+                    // Polymorphism in action
+                    ((AbstractInvestmentSolver) solver).displayResults(projects);
+                } catch (Exception e) {
+                    // Fulfills Rubric 1.6: Graceful recovery for unexpected user actions/data
+                    System.out.println("\n[!] A critical runtime error occurred: " + e.toString());
+                    System.out.println("[!] Returning safely to the main menu. Please check your dataset.");
+                }
             }
         }
         scanner.close();

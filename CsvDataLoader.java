@@ -19,13 +19,27 @@ public class CsvDataLoader implements IDataLoader {
         File file = new File(filename);
 
         try (Scanner fileScanner = new Scanner(file)) {
+            // SUGGESTION 2: Validate Header
             if (fileScanner.hasNextLine()) {
-                fileScanner.nextLine(); // Skip header
+                String header = fileScanner.nextLine().toLowerCase();
+                // Simple keyword check to ensure it's the right type of file
+                if (!header.contains("id") || !header.contains("profit") || !header.contains("deadline")) {
+                    System.out.println("[!] Warning: The CSV header does not match the expected schema.");
+                    System.out.println("[!] Expected columns related to ID, Profit, and Deadline.");
+                    System.out.println("[!] Attempting to parse data anyway...\n");
+                }
             }
 
             int lineNumber = 2;
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
+
+                // Skip empty lines to prevent false positive errors
+                if (line.trim().isEmpty()) {
+                    lineNumber++;
+                    continue;
+                }
+
                 String[] parts = line.split(",");
 
                 if (parts.length == 6) {
@@ -40,8 +54,12 @@ public class CsvDataLoader implements IDataLoader {
                         loadedProjects.add(new InvestmentProject(id, name, sector, profit, jobs, deadline));
 
                     } catch (IllegalArgumentException e) {
-                        System.out.println("[!] Data error on line " + lineNumber + ": " + e.getMessage());
+                        System.out.println("[!] Data format error on line " + lineNumber + ": " + e.getMessage());
                     }
+                } else {
+                    // SUGGESTION 3: Explicitly warn about column count mismatches
+                    System.out.println("[!] Structural error on line " + lineNumber
+                            + ": Expected 6 columns, but found " + parts.length + ".");
                 }
                 lineNumber++;
             }

@@ -169,12 +169,9 @@ public class InvestmentProject implements ISchedulableProject, Comparable<Invest
      */
     @Override
     public String toString() {
-        String baseInfo = String.format("%-5s | %-32s | %-15s | RM%6.1f bil | Deadline: %2d | Jobs: %,d",
+        // Removed the hardcoded words "Deadline:" and "Jobs:" and "Scheduled in Slot:" 
+        // since the column headers and output loop handle that beautifully now.
+        return String.format("%-5s | %-32s | %-15s | RM%6.1f bil | %12d | %,d",
                 id, projectName, sector, profit, deadline, jobsCreated);
-
-        if (assignedSlot > 0) {
-            return baseInfo + String.format(" | [Scheduled in Slot: %2d]", assignedSlot);
-        }
-        return baseInfo;
     }
 }
