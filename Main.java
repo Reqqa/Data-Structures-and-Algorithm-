@@ -17,31 +17,32 @@ public class Main {
 
         boolean running = true;
 
+        // Move the list OUTSIDE the loop so it persists between algorithm runs
+        List<InvestmentProject> projects = new ArrayList<>();
+
         while (running) {
-            List<InvestmentProject> projects = new ArrayList<>();
 
             // ---------------------------------------------------------
-            // STEP 1: Handle Data Input
+            // PHASE 1: DATA SELECTION (Only runs if the dataset is empty)
             // ---------------------------------------------------------
-            System.out.println("\n[ Data Selection Menu ]");
-            System.out.println("1. Read dataset from external CSV file");
-            System.out.println("2. Generate random dataset");
-            System.out.println("0. Exit program");
-            System.out.print("Enter your choice: ");
+            if (projects.isEmpty()) {
+                System.out.println("\n[ Data Selection Menu ]");
+                System.out.println("1. Read dataset from external CSV file");
+                System.out.println("2. Generate random dataset");
+                System.out.println("0. Exit program");
+                System.out.print("Enter your choice: ");
 
-            int dataChoice = getUserInput();
+                int dataChoice = getUserInput();
 
-            switch (dataChoice) {
-                case 0:
+                if (dataChoice == 0) {
                     running = false;
                     System.out.println("Exiting system. Goodbye!");
-                    continue;
-                case 1:
+                    break; // Exit the loop entirely
+                } else if (dataChoice == 1) {
                     System.out.print("Enter the filename (e.g., dataset.csv): ");
                     String filename = scanner.nextLine();
                     projects = readFromFile(filename);
-                    break;
-                case 2:
+                } else if (dataChoice == 2) {
                     System.out.print("Enter the number of projects to generate: ");
                     int count = getUserInput();
                     if (count > 0) {
@@ -50,65 +51,102 @@ public class Main {
                         System.out.println("[!] Invalid number. Returning to menu.");
                         continue;
                     }
-                    break;
-                default:
+                } else {
                     System.out.println("[!] Invalid choice. Please select 1, 2, or 0.");
                     continue;
+                }
+
+                // If data loading failed, restart the loop to ask again
+                if (projects == null || projects.isEmpty()) {
+                    System.out.println("[!] No valid data loaded. Please try again.");
+                    continue;
+                }
+                System.out.println("[+] Successfully loaded " + projects.size() + " projects.");
             }
 
-            // If data loading failed or was empty, restart the loop
-            if (projects == null || projects.isEmpty()) {
-                System.out.println("[!] No valid data loaded. Please try again.");
-                continue;
-            }
-
-            System.out.println("[+] Successfully loaded " + projects.size() + " projects.");
-
             // ---------------------------------------------------------
-            // STEP 2: Algorithm Selection
+            // PHASE 2: ALGORITHM SELECTION
             // ---------------------------------------------------------
-            System.out.println("  Select Algorithm");
-            System.out.println("  1 Backtracking Algorithm");
-            System.out.println("  2 Greedy + Disjoint Set / Union Find");
-            System.out.println("  3 Dynamic Programming");
-            System.out.println("  4 Genetic Algorithm");
-            System.out.println("  0 Exit");
-            System.out.print("  Enter choice: ");
+            System.out.println("\n[ Algorithm Selection Menu ] --- " + projects.size() + " Projects Loaded");
+            System.out.println("1. Backtracking Algorithm (Exact, O(2^n))");
+            System.out.println("2. Greedy + Union-Find (Heuristic, Fast)");
+            System.out.println("3. Dynamic Programming (Exact, Pseudo-polynomial)");
+            System.out.println("4. Genetic Algorithm (Approximation)");
+            System.out.println("----------------------------------------");
+            System.out.println("8. View Original Dataset");
+            System.out.println("9. Load Different Dataset");
+            System.out.println("0. Exit program");
+            System.out.print("Select action: ");
 
             int algoChoice = getUserInput();
             IInvestmentAlgorithm solver = null;
 
+            if (algoChoice == 0) {
+                running = false;
+                System.out.println("Exiting system. Goodbye!");
+                break;
+            } else if (algoChoice == 9) {
+                projects.clear(); // Emptying the list forces the Data Selection Menu to reappear
+                System.out.println("[+] Dataset cleared.");
+                continue;
+            } else if (algoChoice == 8) {
+                System.out.println("\n[ Original Dataset ]");
+                for (InvestmentProject p : projects) {
+                    System.out.println(p.toString());
+                }
+                continue; // Return to Algorithm menu
+            }
+
+            // Process Algorithm Selection
             switch (algoChoice) {
                 case 1:
                     solver = new BacktrackingSolver();
                     break;
                 case 2:
-                    // solver = new GreedySolver(); 
                     System.out.println("[!] Greedy algorithm not yet implemented.");
                     break;
                 case 3:
-                    // solver = new DynamicProgrammingSolver();
                     System.out.println("[!] DP algorithm not yet implemented.");
                     break;
                 case 4:
-                    solver = new GeneticAlgorithmSolver();
+                    System.out.print("Run with default GA settings (1) or Custom settings (2)? ");
+                    int gaChoice = getUserInput();
+
+                    if (gaChoice == 2) {
+                        try {
+                            System.out.println("--- Advanced GA Configuration ---");
+                            System.out.print("Population Size (e.g., 100): ");
+                            int pop = getUserInput();
+                            System.out.print("Max Generations (e.g., 500): ");
+                            int gen = getUserInput();
+                            System.out.print("Elitism Count (e.g., 5): ");
+                            int elite = getUserInput();
+                            System.out.print("Crossover Rate (e.g., 0.85): ");
+                            double cross = Double.parseDouble(scanner.nextLine().trim());
+                            System.out.print("Mutation Rate (e.g., 0.05): ");
+                            double mut = Double.parseDouble(scanner.nextLine().trim());
+
+                            solver = new GeneticAlgorithmSolver(pop, gen, elite, cross, mut);
+                        } catch (Exception e) {
+                            System.out.println("[!] Invalid custom input. Defaulting to standard GA settings.");
+                            solver = new GeneticAlgorithmSolver();
+                        }
+                    } else {
+                        solver = new GeneticAlgorithmSolver();
+                    }
                     break;
                 default:
                     System.out.println("[!] Invalid algorithm selection.");
             }
+
             // ---------------------------------------------------------
-            // STEP 3: Execute and Display
+            // PHASE 3: EXECUTION
             // ---------------------------------------------------------
             if (solver != null) {
-                System.out.println("\n[ Original Dataset ]");
-                for (InvestmentProject p : projects) {
-                    System.out.println(p.toString());
-                }
-
                 System.out.println("\nExecuting " + solver.getAlgorithmName() + "...");
                 solver.solve(projects);
 
-                // Pass the original projects list so it can calculate the unselected ones!
+                // Polymorphism in action
                 ((AbstractInvestmentSolver) solver).displayResults(projects);
             }
         }
@@ -116,17 +154,16 @@ public class Main {
     }
 
     // =========================================================
-    // HELPER METHODS FOR ROBUSTNESS
+    // HELPER METHODS
     // =========================================================
     /**
      * Safely reads an integer from the user without crashing on text input.
      */
     private static int getUserInput() {
         try {
-            int input = Integer.parseInt(scanner.nextLine().trim());
-            return input;
+            return Integer.parseInt(scanner.nextLine().trim());
         } catch (NumberFormatException e) {
-            return -1; // Return an invalid option to trigger the default switch cases
+            return -1; // Return an invalid option to trigger default switch cases
         }
     }
 
@@ -138,9 +175,8 @@ public class Main {
         File file = new File(filename);
 
         try (Scanner fileScanner = new Scanner(file)) {
-            // Skip the header row if your CSV has one
             if (fileScanner.hasNextLine()) {
-                fileScanner.nextLine();
+                fileScanner.nextLine(); // Skip header
             }
 
             int lineNumber = 2;
@@ -157,23 +193,23 @@ public class Main {
                         int jobs = Integer.parseInt(parts[4].trim());
                         int deadline = Integer.parseInt(parts[5].trim());
 
-                        // The constructor will throw an exception if data is negative
                         loadedProjects.add(new InvestmentProject(id, name, sector, profit, jobs, deadline));
+
                     } catch (IllegalArgumentException e) {
-                        System.out.println("[!] Data error on line " + lineNumber + ": " + e.getMessage() + ". Skipping project.");
+                        System.out.println("[!] Data error on line " + lineNumber + ": " + e.getMessage());
                     }
                 }
                 lineNumber++;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("[!] Error: The file '" + filename + "' was not found in the project directory.");
+            System.out.println("[!] Error: The file '" + filename + "' was not found.");
         }
 
         return loadedProjects;
     }
 
     /**
-     * Generates a realistic random dataset for testing scalability.
+     * Generates a realistic random dataset.
      */
     private static List<InvestmentProject> generateRandomData(int count) {
         List<InvestmentProject> randomProjects = new ArrayList<>();
@@ -185,14 +221,10 @@ public class Main {
             String name = "Initiative " + (char) (rand.nextInt(26) + 'A') + rand.nextInt(100);
             String sector = sectors[rand.nextInt(sectors.length)];
 
-            // Generate profit between 1.0 and 50.0 RM Billion
             double profit = 1.0 + (49.0 * rand.nextDouble());
-            // Round to 1 decimal place
             profit = Math.round(profit * 10.0) / 10.0;
 
-            int jobs = 100 + rand.nextInt(4900); // 100 to 5000 jobs
-
-            // Random deadline between 1 and a dynamic upper limit based on dataset size
+            int jobs = 100 + rand.nextInt(4900);
             int maxDeadline = Math.max(3, count / 2);
             int deadline = 1 + rand.nextInt(maxDeadline);
 
