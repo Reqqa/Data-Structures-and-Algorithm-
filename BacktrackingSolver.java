@@ -57,6 +57,9 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
         // 4. Begin the recursive search
         findOptimalSchedule(sortedProjects, 0, currentSelection, 0.0, timeSlots);
 
+        // Sort the final chosen portfolio chronologically by deadline for clean output
+        this.selectedPortfolio.sort(java.util.Comparator.comparingInt(InvestmentProject::getDeadline));
+
         this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
     }
 
