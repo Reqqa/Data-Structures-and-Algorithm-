@@ -66,24 +66,33 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
     }
 
     /**
-     * Recursive helper method that explores the decision tree.
+     * Recursive helper method that explores the decision tree. Note: The
+     * inclusion of an upper-bound pruning check technically elevates this
+     * algorithm from pure Backtracking to a Branch and Bound approach.
      */
     private void findOptimalSchedule(List<InvestmentProject> projects, int currentIndex,
             List<InvestmentProject> currentSelection,
             double currentProfit, boolean[] timeSlots, double remainingProfit) {
 
+        // ==========================================
+        // PRUNING (BRANCH AND BOUND)
+        // ==========================================
         // If the best-case scenario for this branch cannot beat our current best, kill the branch.
+        // This converts the algorithm from an exhaustive O(2^n) search into a highly efficient bounding tree.
         if (currentProfit + remainingProfit <= this.maxExpectedReturn) {
             return;
         }
 
         // Base Case: We have made a decision (include or exclude) for every project
         if (currentIndex == projects.size()) {
-            // If this branch yielded a higher profit than our previous best, save it!
             if (currentProfit > this.maxExpectedReturn) {
                 this.maxExpectedReturn = currentProfit;
-                // Deep copy the current selection so it doesn't get overwritten as we backtrack
-                this.selectedPortfolio = new ArrayList<>(currentSelection);
+
+                // NEW: Deep Copy the current selection!
+                this.selectedPortfolio = new ArrayList<>();
+                for (InvestmentProject p : currentSelection) {
+                    this.selectedPortfolio.add(new InvestmentProject(p));
+                }
             }
             return;
         }
@@ -102,10 +111,9 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
         int deadline = currentProject.getDeadline();
         int slotFound = -1;
 
-        // Ensure we don't try to access an index larger than our timeSlots array
         int maxSlotToSearch = Math.min(deadline, timeSlots.length - 1);
 
-        // Find the latest available slot on or before the deadline (Greedy slotting)
+        // Find the latest available slot on or before the deadline
         for (int i = maxSlotToSearch; i > 0; i--) {
             if (!timeSlots[i]) {
                 slotFound = i;
@@ -113,21 +121,23 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
             }
         }
 
-        // If a valid slot exists, we can proceed down the "Include" branch
+        // If a valid slot exists, proceed down the "Include" branch
         if (slotFound != -1) {
             // Apply the choice
             timeSlots[slotFound] = true;
-            currentProject.setAssignedSlot(slotFound);
+            currentProject.setAssignedSlot(slotFound); // Mutate state for this branch
             currentSelection.add(currentProject);
 
-            // Recurse deeper into the tree with this project included
+            // Recurse deeper into the tree
             findOptimalSchedule(projects, currentIndex + 1, currentSelection,
                     currentProfit + currentProject.getProfit(), timeSlots, nextRemainingProfit);
 
             // BACKTRACK: Undo the choice so other branches can explore this slot/state
             timeSlots[slotFound] = false;
             currentSelection.remove(currentSelection.size() - 1);
-            // Now your comment is 100% accurate because the local currentProfit was never reassigned!
+
+            // CRITICAL BUG FIX: Reset the shared-state mutation!
+            currentProject.setAssignedSlot(-1);
         }
     }
 }

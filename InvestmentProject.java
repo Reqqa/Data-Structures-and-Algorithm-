@@ -51,6 +51,20 @@ public class InvestmentProject implements ISchedulableProject, Comparable<Invest
     }
 
     /**
+     * Copy Constructor used for Deep Copying to prevent shared-state mutation
+     * bugs.
+     */
+    public InvestmentProject(InvestmentProject source) {
+        this.id = source.id;
+        this.projectName = source.projectName;
+        this.sector = source.sector;
+        this.profit = source.profit;
+        this.jobsCreated = source.jobsCreated;
+        this.deadline = source.deadline;
+        this.assignedSlot = source.assignedSlot;
+    }
+
+    /**
      * Determines if this project can be legally scheduled in the given time
      * slot. Encapsulates the deadline logic within the domain object.
      */
