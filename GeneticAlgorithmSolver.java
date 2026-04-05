@@ -80,6 +80,7 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
         double bestOverallFitness = -Double.MAX_VALUE;
         int stagnantGenerations = 0;
         int maxStagnantGenerations = 50;
+
         for (int generation = 0; generation < maxGenerations; generation++) {
             for (Chromosome c : population) {
                 c.calculateFitness();
@@ -140,9 +141,14 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
 
             // Unified domain logic. (i + 1) perfectly aligns the 0-indexed array with 1-indexed time slots.
             if (proj != null && proj.isSchedulableAt(i + 1) && !addedIds.contains(proj.getId())) {
-                this.selectedPortfolio.add(proj);
-                this.maxExpectedReturn += proj.getProfit();
-                addedIds.add(proj.getId());
+
+                // FIX IMPLEMENTED: Deep copy the project and set the assigned slot so the UI displays it correctly.
+                InvestmentProject scheduledProject = new InvestmentProject(proj);
+                scheduledProject.setAssignedSlot(i + 1);
+
+                this.selectedPortfolio.add(scheduledProject);
+                this.maxExpectedReturn += scheduledProject.getProfit();
+                addedIds.add(scheduledProject.getId());
             }
         }
 
@@ -203,11 +209,20 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
 
         public Chromosome(int len, List<InvestmentProject> projects) {
             this.genes = new InvestmentProject[len];
+            Set<String> seenIds = new HashSet<>(); // Track IDs immediately
+
             for (int i = 0; i < len; i++) {
                 if (random.nextDouble() > 0.3) {
-                    genes[i] = projects.get(random.nextInt(projects.size()));
+                    InvestmentProject candidate = projects.get(random.nextInt(projects.size()));
+
+                    // Only assign the gene if we haven't scheduled this project yet
+                    if (!seenIds.contains(candidate.getId())) {
+                        genes[i] = candidate;
+                        seenIds.add(candidate.getId());
+                    }
                 }
             }
+            // 'this' is no longer leaked, and the initial population is strictly valid!
         }
 
         /**

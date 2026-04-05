@@ -98,6 +98,7 @@ public class InvestmentProject implements ISchedulableProject, Comparable<Invest
     }
 
     // --- Getters ---
+    @Override
     public String getId() {
         return id;
     }
@@ -110,6 +111,7 @@ public class InvestmentProject implements ISchedulableProject, Comparable<Invest
         return sector;
     }
 
+    @Override
     public double getProfit() {
         return profit;
     }
@@ -118,6 +120,7 @@ public class InvestmentProject implements ISchedulableProject, Comparable<Invest
         return jobsCreated;
     }
 
+    @Override
     public int getDeadline() {
         return deadline;
     }
