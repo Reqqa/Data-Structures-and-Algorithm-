@@ -67,6 +67,12 @@ public class Main {
                     continue;
                 }
                 System.out.println("[+] Successfully loaded " + projects.size() + " projects.");
+                System.out.println("    --- Data Preview (First 15 rows) ---");
+                int previewCount = Math.min(15, projects.size());
+                for (int i = 0; i < previewCount; i++) {
+                    System.out.println("    " + projects.get(i).toString());
+                }
+                System.out.println("    -----------------------------------");
             }
 
             // ---------------------------------------------------------
@@ -170,71 +176,5 @@ public class Main {
         } catch (NumberFormatException e) {
             return -1; // Return an invalid option to trigger default switch cases
         }
-    }
-
-    /**
-     * Reads and parses project data from a CSV file.
-     */
-    private static List<InvestmentProject> readFromFile(String filename) {
-        List<InvestmentProject> loadedProjects = new ArrayList<>();
-        File file = new File(filename);
-
-        try (Scanner fileScanner = new Scanner(file)) {
-            if (fileScanner.hasNextLine()) {
-                fileScanner.nextLine(); // Skip header
-            }
-
-            int lineNumber = 2;
-            while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-                String[] parts = line.split(",");
-
-                if (parts.length == 6) {
-                    try {
-                        String id = parts[0].trim();
-                        String name = parts[1].trim();
-                        String sector = parts[2].trim();
-                        double profit = Double.parseDouble(parts[3].trim());
-                        int jobs = Integer.parseInt(parts[4].trim());
-                        int deadline = Integer.parseInt(parts[5].trim());
-
-                        loadedProjects.add(new InvestmentProject(id, name, sector, profit, jobs, deadline));
-
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("[!] Data error on line " + lineNumber + ": " + e.getMessage());
-                    }
-                }
-                lineNumber++;
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("[!] Error: The file '" + filename + "' was not found.");
-        }
-
-        return loadedProjects;
-    }
-
-    /**
-     * Generates a realistic random dataset.
-     */
-    private static List<InvestmentProject> generateRandomData(int count) {
-        List<InvestmentProject> randomProjects = new ArrayList<>();
-        Random rand = new Random();
-        String[] sectors = {"Technology", "Real Estate", "Healthcare", "Energy", "Finance"};
-
-        for (int i = 1; i <= count; i++) {
-            String id = "PRJ" + String.format("%03d", i);
-            String name = "Initiative " + (char) (rand.nextInt(26) + 'A') + rand.nextInt(100);
-            String sector = sectors[rand.nextInt(sectors.length)];
-
-            double profit = 1.0 + (49.0 * rand.nextDouble());
-            profit = Math.round(profit * 10.0) / 10.0;
-
-            int jobs = 100 + rand.nextInt(4900);
-            int maxDeadline = Math.max(3, count / 2);
-            int deadline = 1 + rand.nextInt(maxDeadline);
-
-            randomProjects.add(new InvestmentProject(id, name, sector, profit, jobs, deadline));
-        }
-        return randomProjects;
     }
 }

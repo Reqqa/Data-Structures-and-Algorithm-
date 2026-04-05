@@ -29,10 +29,12 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
 
         // 2. Find the maximum deadline to size our time slot tracker
         int maxDeadline = 0;
+        double totalAvailableProfit = 0.0;
         for (InvestmentProject project : projects) {
             if (project.getDeadline() > maxDeadline) {
                 maxDeadline = project.getDeadline();
             }
+            totalAvailableProfit += project.getProfit();
         }
 
         // Array to track which time slots are currently occupied (1-indexed for simplicity)
@@ -55,10 +57,10 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
         Collections.sort(sortedProjects);
 
         // 4. Begin the recursive search
-        findOptimalSchedule(sortedProjects, 0, currentSelection, 0.0, timeSlots);
+        findOptimalSchedule(sortedProjects, 0, currentSelection, 0.0, timeSlots, totalAvailableProfit);
 
         // Sort the final chosen portfolio chronologically by deadline for clean output
-        this.selectedPortfolio.sort(java.util.Comparator.comparingInt(InvestmentProject::getDeadline));
+        this.selectedPortfolio.sort(java.util.Comparator.comparingInt(InvestmentProject::getAssignedSlot));
 
         this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
     }
@@ -68,7 +70,12 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
      */
     private void findOptimalSchedule(List<InvestmentProject> projects, int currentIndex,
             List<InvestmentProject> currentSelection,
-            double currentProfit, boolean[] timeSlots) {
+            double currentProfit, boolean[] timeSlots, double remainingProfit) {
+
+        // If the best-case scenario for this branch cannot beat our current best, kill the branch.
+        if (currentProfit + remainingProfit <= this.maxExpectedReturn) {
+            return;
+        }
 
         // Base Case: We have made a decision (include or exclude) for every project
         if (currentIndex == projects.size()) {
@@ -86,7 +93,8 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
         // ==========================================
         // BRANCH 1: EXCLUDE the current project
         // ==========================================
-        findOptimalSchedule(projects, currentIndex + 1, currentSelection, currentProfit, timeSlots);
+        double nextRemainingProfit = remainingProfit - currentProject.getProfit();
+        findOptimalSchedule(projects, currentIndex + 1, currentSelection, currentProfit, timeSlots, nextRemainingProfit);
 
         // ==========================================
         // BRANCH 2: INCLUDE the current project
@@ -109,17 +117,17 @@ public class BacktrackingSolver extends AbstractInvestmentSolver {
         if (slotFound != -1) {
             // Apply the choice
             timeSlots[slotFound] = true;
+            currentProject.setAssignedSlot(slotFound);
             currentSelection.add(currentProject);
-            currentProfit += currentProject.getProfit();
 
             // Recurse deeper into the tree with this project included
-            findOptimalSchedule(projects, currentIndex + 1, currentSelection, currentProfit, timeSlots);
+            findOptimalSchedule(projects, currentIndex + 1, currentSelection,
+                    currentProfit + currentProject.getProfit(), timeSlots, nextRemainingProfit);
 
             // BACKTRACK: Undo the choice so other branches can explore this slot/state
             timeSlots[slotFound] = false;
-            currentSelection.remove(currentSelection.size() - 1); // Remove the last added project
-            // Note: currentProfit is a local primitive variable passed by value, 
-            // so we don't need to manually subtract it; it resets automatically as the stack pops.
+            currentSelection.remove(currentSelection.size() - 1);
+            // Now your comment is 100% accurate because the local currentProfit was never reassigned!
         }
     }
 }

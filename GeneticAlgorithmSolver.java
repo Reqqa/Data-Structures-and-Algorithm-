@@ -22,7 +22,7 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
     private Random random = new Random();
 
     public GeneticAlgorithmSolver() {
-        this(100, 500, 5, 0.85, 0.05);
+        this(500, 1000, 5, 0.85, 0.05);
     }
 
     /**
@@ -77,12 +77,29 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
             population.add(new Chromosome(maxDeadline, projects));
         }
 
+        double bestOverallFitness = -Double.MAX_VALUE;
+        int stagnantGenerations = 0;
+        int maxStagnantGenerations = 50;
         for (int generation = 0; generation < maxGenerations; generation++) {
             for (Chromosome c : population) {
                 c.calculateFitness();
             }
 
             Collections.sort(population);
+
+            double currentBestFitness = population.get(0).fitness;
+            if (currentBestFitness > bestOverallFitness) {
+                bestOverallFitness = currentBestFitness;
+                stagnantGenerations = 0; // Reset counter
+            } else {
+                stagnantGenerations++;
+            }
+
+            if (stagnantGenerations >= maxStagnantGenerations) {
+                System.out.println("  [i] GA converged early at generation " + generation);
+                break; // Exit the loop!
+            }
+
             List<Chromosome> nextGeneration = new ArrayList<>();
 
             // Elitism: Defensive cloning prevents accidental mutation (Polish 2)
@@ -102,6 +119,7 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
                 }
 
                 mutate(child, projects);
+                repair(child);
                 nextGeneration.add(child);
             }
             population = nextGeneration;
@@ -156,6 +174,20 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
         for (int i = 0; i < child.genes.length; i++) {
             if (random.nextDouble() < mutationRate) {
                 child.genes[i] = random.nextBoolean() ? null : projects.get(random.nextInt(projects.size()));
+            }
+        }
+    }
+
+    private void repair(Chromosome child) {
+        Set<String> seenIds = new HashSet<>();
+        for (int i = 0; i < child.genes.length; i++) {
+            InvestmentProject p = child.genes[i];
+            if (p != null) {
+                if (seenIds.contains(p.getId())) {
+                    child.genes[i] = null; // Wipe the duplicate, freeing up the slot
+                } else {
+                    seenIds.add(p.getId());
+                }
             }
         }
     }
