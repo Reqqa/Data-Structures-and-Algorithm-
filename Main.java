@@ -66,9 +66,9 @@ public class Main {
             // ---------------------------------------------------------
             System.out.println("  Select Algorithm");
             System.out.println("  1 Backtracking Algorithm");
-            System.out.println("  2 Genetic Algorithm");
+            System.out.println("  2 Greedy + Disjoint Set / Union Find");
             System.out.println("  3 Dynamic Programming");
-            System.out.println("  4 Greedy + Disjoint Set / Union Find");
+            System.out.println("  4 Genetic Algorithm");
             System.out.println("  0 Exit");
             System.out.print("  Enter choice: ");
 
@@ -88,8 +88,7 @@ public class Main {
                     System.out.println("[!] DP algorithm not yet implemented.");
                     break;
                 case 4:
-                    // solver = new GeneticAlgorithmSolver();
-                    System.out.println("[!] Genetic algorithm not yet implemented.");
+                    solver = new GeneticAlgorithmSolver();
                     break;
                 default:
                     System.out.println("[!] Invalid algorithm selection.");
