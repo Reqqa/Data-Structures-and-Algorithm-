@@ -130,9 +130,9 @@ public class Main {
                             System.out.print("Elitism Count (e.g., 5): ");
                             int elite = getUserInput();
                             System.out.print("Crossover Rate (e.g., 0.85): ");
-                            double cross = Double.parseDouble(scanner.nextLine().trim());
+                            double cross = getUserDoubleInput();
                             System.out.print("Mutation Rate (e.g., 0.05): ");
-                            double mut = Double.parseDouble(scanner.nextLine().trim());
+                            double mut = getUserDoubleInput();
 
                             solver = new GeneticAlgorithmSolver(pop, gen, elite, cross, mut);
                         } catch (Exception e) {
@@ -156,10 +156,17 @@ public class Main {
                     solver.solve(projects);
                     // Polymorphism in action
                     ((AbstractInvestmentSolver) solver).displayResults(projects);
+
+                    // Specific catch for data validation errors
+                } catch (IllegalArgumentException e) {
+                    System.out.println("\n[!] Invalid data encountered: " + e.getMessage());
+                    System.out.println("[!] Please check your dataset configuration or inputs.");
+
+                    // Fallback for unexpected critical errors
                 } catch (Exception e) {
                     // Fulfills Rubric 1.6: Graceful recovery for unexpected user actions/data
-                    System.out.println("\n[!] A critical runtime error occurred: " + e.toString());
-                    System.out.println("[!] Returning safely to the main menu. Please check your dataset.");
+                    System.out.println("\n[!] An unexpected critical runtime error occurred: " + e.toString());
+                    System.out.println("[!] Returning safely to the main menu.");
                 }
             }
         }
@@ -177,6 +184,17 @@ public class Main {
             return Integer.parseInt(scanner.nextLine().trim());
         } catch (NumberFormatException e) {
             return -1; // Return an invalid option to trigger default switch cases
+        }
+    }
+
+    /**
+     * Safely reads a double from the user without crashing on text input.
+     */
+    private static double getUserDoubleInput() {
+        try {
+            return Double.parseDouble(scanner.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1.0; // Returns an invalid rate to trigger the GA validation exception
         }
     }
 }

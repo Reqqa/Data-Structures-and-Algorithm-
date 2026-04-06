@@ -23,7 +23,7 @@ public class CsvDataLoader implements IDataLoader {
             if (fileScanner.hasNextLine()) {
                 String header = fileScanner.nextLine().toLowerCase();
                 // Simple keyword check to ensure it's the right type of file
-                if (!header.contains("id") || !header.contains("profit") || !header.contains("deadline")) {
+                if (!header.contains("job_id") || !header.contains("investment_rm_billion") || !header.contains("deadline_slot")) {
                     System.out.println("[!] Warning: The CSV header does not match the expected schema.");
                     System.out.println("[!] Expected columns related to ID, Profit, and Deadline.");
                     System.out.println("[!] Attempting to parse data anyway...\n");
