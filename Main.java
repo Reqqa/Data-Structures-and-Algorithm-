@@ -114,7 +114,7 @@ public class Main {
                     System.out.println("[!] Greedy algorithm not yet implemented.");
                     break;
                 case 3:
-                    System.out.println("[!] DP algorithm not yet implemented.");
+                    solver = new DynamicProgrammingSolver();
                     break;
                 case 4:
                     System.out.print("Run with default GA settings (1) or Custom settings (2)? ");
