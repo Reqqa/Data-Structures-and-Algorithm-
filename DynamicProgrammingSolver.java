@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
 
     @Override
     public void solve(List<InvestmentProject> projects) {
+        // records start time to measure execution duration
         long startTime = System.currentTimeMillis();
 
         // 1. Reset state
@@ -43,14 +45,22 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         }
 
         int n = projects.size();
+        // number of possible slot-usage states using bitmasks
+        // mask runs from 0 to 2^d - 1. Each bit represents whether a slot is used.
         int maxMask = 1 << maxDeadline;
 
         // 3. Sort projects by profit descending
         List<InvestmentProject> sortedProjects = new ArrayList<>(projects);
-        Collections.sort(sortedProjects, (a, b) -> Double.compare(b.getProfit(), a.getProfit()));
+        Collections.sort(sortedProjects, new Comparator<InvestmentProject>() {
+            @Override
+            public int compare(InvestmentProject a, InvestmentProject b) {
+                return Double.compare(b.getProfit(), a.getProfit());
+            }
+        });
+        // -> this makes the DP more likely to consider high-profit choices first.
 
         // 4. DP table: dp[i][mask] = max profit for first i projects, with used slots mask
-        double[][] dp = new double[n + 1][maxMask];
+        double[][] dp = new double[n + 1][maxMask]；
         // Initialize to negative infinity
         for (int i = 0; i <= n; i++) {
             for (int mask = 0; mask < maxMask; mask++) {
