@@ -111,7 +111,7 @@ public class Main {
                     solver = new BacktrackingSolver();
                     break;
                 case 2:
-                    System.out.println("[!] Greedy algorithm not yet implemented.");
+                    solver = new GreedyDSUSolver();
                     break;
                 case 3:
                     solver = new DynamicProgrammingSolver();
