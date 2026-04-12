@@ -21,6 +21,8 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
 
     private Random random = new Random();
 
+    private final Set<InvestmentProject> sharedEvaluationSet = new HashSet<>();
+
     public GeneticAlgorithmSolver() {
         this(500, 1000, 5, 0.85, 0.05);
     }
@@ -237,8 +239,9 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
 
         public void calculateFitness() {
             fitness = 0.0;
-            // Now stores the object, not just the ID string
-            Set<InvestmentProject> seenProjects = new HashSet<>();
+
+            // Reuses the exact same memory allocation, just wiping the slate clean
+            sharedEvaluationSet.clear();
 
             for (int i = 0; i < genes.length; i++) {
                 InvestmentProject p = genes[i];
@@ -249,12 +252,12 @@ public class GeneticAlgorithmSolver extends AbstractInvestmentSolver {
                 // Using the smart helper method (i + 1 because array is 0-indexed, slots are 1-indexed)
                 boolean isLate = !p.isSchedulableAt(i + 1);
 
-                if (seenProjects.contains(p) || isLate) {
+                if (sharedEvaluationSet.contains(p) || isLate) {
                     fitness += PENALTY;
                 } else {
                     fitness += p.getProfit();
                 }
-                seenProjects.add(p);
+                sharedEvaluationSet.add(p);
             }
         }
 
