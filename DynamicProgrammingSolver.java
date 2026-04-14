@@ -54,17 +54,9 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         long maxMemory = runtime.maxMemory();
         long usedMemory = runtime.totalMemory() - runtime.freeMemory();
         long availableMemory = maxMemory - usedMemory;
-
-        // Reserve 10% safety margin to avoid OutOfMemoryError
         long safeMemory = (long) (availableMemory * 0.9);
-
-        // Memory per state: 16 bytes (from array overhead) + 16*n bytes (reconstruction table per state)
         long memoryPerState = 16 + (16L * numProjects);
-
-        // Calculate max states: safeMemory / memoryPerState
         long maxStates = safeMemory / memoryPerState;
-
-        // D = log2(maxStates), rounded down
         int maxD = (maxStates > 0) ? (int) Math.floor(Math.log(maxStates) / Math.log(2)) : 0;
 
         // Clamp to absolute maximum to prevent overflow
@@ -202,7 +194,6 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         }
         prevRow[0] = 0.0;
 
-        // Create reconstruction table: prev[i][mask] = {prev_i, prev_mask, took, slot}
         int[][][] prev = new int[n + 1][maxMask][4]; 
 
         // 5. Fill DP table using two rows for O(2^d) space
