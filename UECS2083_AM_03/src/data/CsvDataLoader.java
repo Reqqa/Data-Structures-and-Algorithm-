@@ -1,7 +1,7 @@
 package data;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,9 +20,21 @@ public class CsvDataLoader implements IDataLoader {
     @Override
     public List<InvestmentProject> loadData() {
         List<InvestmentProject> loadedProjects = new ArrayList<>();
-        File file = new File(filename);
 
-        try (Scanner fileScanner = new Scanner(file)) {
+        if (filename == null || !filename.toLowerCase().endsWith(".csv")) {
+            System.out.println("[!] Error: '" + filename + "' is not a valid CSV file.");
+            System.out.println("[!] Please ensure the filename ends with '.csv'");
+            return loadedProjects;
+        }
+
+        try (java.io.InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
+         Scanner fileScanner = (is != null) ? new Scanner(is) : null) {
+
+            if (is == null) {
+                System.out.println("[!] Error: The file '" + filename + "' was not found on the classpath.");
+                return loadedProjects;
+            }
+
             // SUGGESTION 2: Validate Header
             if (fileScanner.hasNextLine()) {
                 String header = fileScanner.nextLine().toLowerCase();
@@ -37,7 +49,6 @@ public class CsvDataLoader implements IDataLoader {
             int lineNumber = 2;
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-
                 // Skip empty lines to prevent false positive errors
                 if (line.trim().isEmpty()) {
                     lineNumber++;
@@ -67,7 +78,7 @@ public class CsvDataLoader implements IDataLoader {
                 }
                 lineNumber++;
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("[!] Error: The file '" + filename + "' was not found.");
         }
         return loadedProjects;
