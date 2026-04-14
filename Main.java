@@ -157,6 +157,11 @@ public class Main {
                     // Polymorphism in action
                     ((AbstractInvestmentSolver) solver).displayResults(projects);
 
+                    // Catch user request to modify input and return to data selection menu
+                } catch (UserInputModificationException e) {
+                    projects.clear(); // Clear projects to re-show Data Selection Menu on next loop iteration
+                    continue;
+
                     // Specific catch for data validation errors
                 } catch (IllegalArgumentException e) {
                     System.out.println("\n[!] Invalid data encountered: " + e.getMessage());

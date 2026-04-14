@@ -2,19 +2,87 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 /**
- * Solves the Job Sequencing problem using Dynamic Programming.
- * Uses a DP table with state (job_index, used_slots_mask) for exact solution.
- * Time complexity: O(n * 2^maxD * maxD), pseudo-polynomial.
+ * Solves the Job Sequencing problem using Dynamic Programming with bitmask-based state space.
+ * 
+ * <h2>Complexity & Memory Safety</h2>
+ * <ul>
+ *   <li><strong>Time:</strong> O(n × 2^D × D) where n = projects, D = max deadline (pseudo-polynomial)</li>
+ *   <li><strong>Space:</strong> O(n × 2^D) for DP and reconstruction tables</li>
+ * </ul>
+ * 
+ * <p>The maximum safe deadline is computed dynamically ({@link #computeSafeMaxDeadline(int)}) based on
+ * available JVM heap memory using the formula: D ≤ log₂(availableMemory / (16 + 16*n))
+ * with 10% safety margin. This eliminates fixed magic numbers and adapts to runtime system resources.
+ * 
+ * <p>When input deadline exceeds the computed safe limit, the solver prompts the user to either
+ * modify input, choose a different algorithm, or accept the memory risk.
  */
+
 public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
+    /**
+     * Theoretical maximum deadline to prevent integer overflow.
+     * The actual safe limit is computed dynamically via {@link #computeSafeMaxDeadline(int)}.
+     */
+    private static final int ABSOLUTE_MAX_DEADLINE = 25;
+    
+    /** Tracks the actual algorithm used when fallback occurs. */
+    private String actualAlgorithmName = null;
 
     @Override
     public String getAlgorithmName() {
+        if (actualAlgorithmName != null) {
+            return actualAlgorithmName;
+        }
         return "Dynamic Programming (Exact, Pseudo-polynomial)";
     }
 
+    /**
+     * Dynamically computes the maximum safe deadline based on available JVM heap memory.
+     * 
+     * <p>Formula: D ≤ log₂(availableMemory / (16 + 16*n))
+     * <br>Memory per state = (16 + 16*n) bytes, where n = number of projects.
+     * <br>Applies 10% safety margin; clamps to {@value #ABSOLUTE_MAX_DEADLINE}.
+     * 
+     * @param numProjects the number of projects
+     * @return the maximum safe deadline that won't exceed available heap memory
+     */
+    private int computeSafeMaxDeadline(int numProjects) {
+        Runtime runtime = Runtime.getRuntime();
+        long maxMemory = runtime.maxMemory();
+        long usedMemory = runtime.totalMemory() - runtime.freeMemory();
+        long availableMemory = maxMemory - usedMemory;
+
+        // Reserve 10% safety margin to avoid OutOfMemoryError
+        long safeMemory = (long) (availableMemory * 0.9);
+
+        // Memory per state: 16 bytes (from array overhead) + 16*n bytes (reconstruction table per state)
+        long memoryPerState = 16 + (16L * numProjects);
+
+        // Calculate max states: safeMemory / memoryPerState
+        long maxStates = safeMemory / memoryPerState;
+
+        // D = log2(maxStates), rounded down
+        int maxD = (maxStates > 0) ? (int) Math.floor(Math.log(maxStates) / Math.log(2)) : 0;
+
+        // Clamp to absolute maximum to prevent overflow
+        return Math.min(maxD, ABSOLUTE_MAX_DEADLINE);
+    }
+
+    /**
+     * Solves the job sequencing problem using dynamic programming with bitmask state representation.
+     * 
+     * <p>Validates that input deadline is within safe memory bounds computed dynamically.
+     * If exceeded, prompts user to modify input, switch algorithms ({@link BacktrackingSolver},
+     * {@link GreedyDSUSolver}, or {@link GeneticAlgorithmSolver}), or proceed at risk.
+     * Otherwise executes optimal DP with O(2^D) memory and O(n × 2^D × D) time.
+     * 
+     * @param projects the list of investment projects; cannot be null or empty
+     * @throws UserInputModificationException if maxDeadline exceeds safe limit and user chooses option 1 (modify input)
+     * @see #computeSafeMaxDeadline(int) for dynamic memory-based deadline calculation
+     */
     @Override
     public void solve(List<InvestmentProject> projects) {
         // records start time to measure execution duration
@@ -29,7 +97,8 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
             return;
         }
 
-        // 2. Find max deadline
+        // 2. Find max deadline and project count
+        int n = projects.size();
         int maxDeadline = 0;
         for (InvestmentProject p : projects) {
             if (p.getDeadline() > maxDeadline) {
@@ -37,17 +106,81 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
             }
         }
 
-        // If maxDeadline is too large, fall back or warn, but assume <= 20
-        if (maxDeadline > 20) {
-            System.out.println("[!] Max deadline too large for DP, using backtracking approximation.");
-            // For now, proceed, but in practice, limit to 20
-            maxDeadline = Math.min(maxDeadline, 20);
+        // Dynamically compute the safe maximum deadline based on available JVM memory
+        int safeMaxDeadline = computeSafeMaxDeadline(n);
+
+        // If deadline exceeds what memory allows, ask user what to do
+        if (maxDeadline > safeMaxDeadline) {
+            System.out.println("==================================================");
+            System.out.println("[WARNING] Maximum deadline constraint violated!");
+            System.out.println(String.format(
+                "  Input maxDeadline: %d\n" +
+                "  Safe memory limit: %d\n" +
+                "  Reason: Exponential state space O(2^D) = %,d states\n" +
+                "  Available heap: %.1f MB\n",
+                maxDeadline, safeMaxDeadline, (long)Math.pow(2, maxDeadline),
+                (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0)
+            ));
+            System.out.println("Select one of the following options:");
+            System.out.println("  1. Modify your input (exit and restart with new data)");
+            System.out.println("  2. Continue with BacktrackingSolver (guaranteed optimal, slower)");
+            System.out.println("  3. Continue with GreedyDSUSolver (approximate, fast)");
+            System.out.println("  4. Continue with GeneticAlgorithmSolver (approximate, adaptive)");
+            System.out.print("Enter your choice (1-4): ");
+            
+            Scanner scanner = new Scanner(System.in);
+            String choice = scanner.nextLine().trim();
+            
+            if (choice.equals("1")) {
+                System.out.println("[INFO] Exiting solver. Please modify your input and try again.");
+                System.out.println("==================================================\n");
+                throw new UserInputModificationException(
+                    String.format("Max deadline %d exceeds safe limit %d. User requested input modification.", 
+                    maxDeadline, safeMaxDeadline)
+                );
+            } else if (choice.equals("2")) {
+                System.out.println("[INFO] Proceeding with BacktrackingSolver (guaranteed optimal)...");
+                System.out.println("==================================================\n");
+                BacktrackingSolver backtracker = new BacktrackingSolver();
+                backtracker.solve(projects);
+                this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
+                this.selectedPortfolio = backtracker.selectedPortfolio;
+                this.actualAlgorithmName = backtracker.getAlgorithmName();
+                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                return;
+            } else if (choice.equals("3")) {
+                System.out.println("[INFO] Proceeding with Greedy DSU Solver (approximate, fast)...");
+                System.out.println("==================================================\n");
+                GreedyDSUSolver greedy = new GreedyDSUSolver();
+                greedy.solve(projects);
+                this.maxExpectedReturn = greedy.getMaxExpectedReturn();
+                this.selectedPortfolio = greedy.selectedPortfolio;
+                this.actualAlgorithmName = greedy.getAlgorithmName();
+                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                return;
+            } else if (choice.equals("4")) {
+                System.out.println("[INFO] Proceeding with Genetic Algorithm Solver (approximate, adaptive)...");
+                System.out.println("==================================================\n");
+                GeneticAlgorithmSolver genetic = new GeneticAlgorithmSolver();
+                genetic.solve(projects);
+                this.maxExpectedReturn = genetic.getMaxExpectedReturn();
+                this.selectedPortfolio = genetic.selectedPortfolio;
+                this.actualAlgorithmName = genetic.getAlgorithmName();
+                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                return;
+            } else {
+                System.out.println("[ERROR] Invalid choice. Proceeding with Backtracking Solver by default.");
+                BacktrackingSolver backtracker = new BacktrackingSolver();
+                backtracker.solve(projects);
+                this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
+                this.selectedPortfolio = backtracker.selectedPortfolio;
+                this.actualAlgorithmName = backtracker.getAlgorithmName();
+                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                return;
+            }
         }
 
-        int n = projects.size();
-        // number of possible slot-usage states using bitmasks
-        // mask runs from 0 to 2^d - 1. Each bit represents whether a slot is used.
-        int maxMask = 1 << maxDeadline;
+        int maxMask = (int) Math.pow(2, maxDeadline);
 
         // 3. Sort projects by profit descending
         List<InvestmentProject> sortedProjects = new ArrayList<>(projects);
@@ -67,15 +200,15 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
             prevRow[mask] = Double.NEGATIVE_INFINITY;
             currRow[mask] = Double.NEGATIVE_INFINITY;
         }
-        prevRow[0] = 0.0; // base state: with zero projects and no slots used, profit is 0
+        prevRow[0] = 0.0;
 
         // Create reconstruction table: prev[i][mask] = {prev_i, prev_mask, took, slot}
-        int[][][] prev = new int[n + 1][maxMask][4]; // [prev_i, prev_mask, took(0/1), slot]
+        int[][][] prev = new int[n + 1][maxMask][4]; 
 
         // 5. Fill DP table using two rows for O(2^d) space
         for (int i = 0; i < n; i++) {
             InvestmentProject p = sortedProjects.get(i);
-            int d = Math.min(p.getDeadline(), maxDeadline); // cap at maxDeadline
+            int d = p.getDeadline(); // deadline already validated to be <= MAX_BITMASK_DEADLINE
             double profit = p.getProfit();
 
             // Reset currRow to negative infinity
