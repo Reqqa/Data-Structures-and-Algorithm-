@@ -1,8 +1,13 @@
+package Solver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+
+import algorithm.*;
+import model.*;
+import exception.*;
 
 /**
  * Solves the Job Sequencing problem using Dynamic Programming with bitmask-based state space.
@@ -120,57 +125,67 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
             System.out.println("  4. Continue with GeneticAlgorithmSolver (approximate, adaptive)");
             System.out.print("Enter your choice (1-4): ");
             
-            Scanner scanner = new Scanner(System.in);
-            String choice = scanner.nextLine().trim();
+            Scanner scanner = null;
             
-            if (choice.equals("1")) {
-                System.out.println("[INFO] Exiting solver. Please modify your input and try again.");
-                System.out.println("==================================================\n");
-                throw new UserInputModificationException(
-                    String.format("Max deadline %d exceeds safe limit %d. User requested input modification.", 
-                    maxDeadline, safeMaxDeadline)
-                );
-            } else if (choice.equals("2")) {
-                System.out.println("[INFO] Proceeding with BacktrackingSolver (guaranteed optimal)...");
-                System.out.println("==================================================\n");
-                BacktrackingSolver backtracker = new BacktrackingSolver();
-                backtracker.solve(projects);
-                this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
-                this.selectedPortfolio = backtracker.selectedPortfolio;
-                this.actualAlgorithmName = backtracker.getAlgorithmName();
-                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
-                return;
-            } else if (choice.equals("3")) {
-                System.out.println("[INFO] Proceeding with Greedy DSU Solver (approximate, fast)...");
-                System.out.println("==================================================\n");
-                GreedyDSUSolver greedy = new GreedyDSUSolver();
-                greedy.solve(projects);
-                this.maxExpectedReturn = greedy.getMaxExpectedReturn();
-                this.selectedPortfolio = greedy.selectedPortfolio;
-                this.actualAlgorithmName = greedy.getAlgorithmName();
-                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
-                return;
-            } else if (choice.equals("4")) {
-                System.out.println("[INFO] Proceeding with Genetic Algorithm Solver (approximate, adaptive)...");
-                System.out.println("==================================================\n");
-                GeneticAlgorithmSolver genetic = new GeneticAlgorithmSolver();
-                genetic.solve(projects);
-                this.maxExpectedReturn = genetic.getMaxExpectedReturn();
-                this.selectedPortfolio = genetic.selectedPortfolio;
-                this.actualAlgorithmName = genetic.getAlgorithmName();
-                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
-                return;
-            } else {
-                System.out.println("[ERROR] Invalid choice. Proceeding with Backtracking Solver by default.");
-                BacktrackingSolver backtracker = new BacktrackingSolver();
-                backtracker.solve(projects);
-                this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
-                this.selectedPortfolio = backtracker.selectedPortfolio;
-                this.actualAlgorithmName = backtracker.getAlgorithmName();
-                this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
-                return;
+            try{
+                scanner = new Scanner(System.in);
+                String choice = scanner.nextLine().trim();
+                
+                if (choice.equals("1")) {
+                    System.out.println("[INFO] Exiting solver. Please modify your input and try again.");
+                    System.out.println("==================================================\n");
+                    throw new UserInputModificationException(
+                        String.format("Max deadline %d exceeds safe limit %d. User requested input modification.", 
+                        maxDeadline, safeMaxDeadline)
+                    );
+                } else if (choice.equals("2")) {
+                    System.out.println("[INFO] Proceeding with BacktrackingSolver (guaranteed optimal)...");
+                    System.out.println("==================================================\n");
+                    BacktrackingSolver backtracker = new BacktrackingSolver();
+                    backtracker.solve(projects);
+                    this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
+                    this.selectedPortfolio = backtracker.getSelectedPortfolio();
+                    this.actualAlgorithmName = backtracker.getAlgorithmName();
+                    this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                    return;
+                } else if (choice.equals("3")) {
+                    System.out.println("[INFO] Proceeding with Greedy DSU Solver (approximate, fast)...");
+                    System.out.println("==================================================\n");
+                    GreedyDSUSolver greedy = new GreedyDSUSolver();
+                    greedy.solve(projects);
+                    this.maxExpectedReturn = greedy.getMaxExpectedReturn();
+                    this.selectedPortfolio = greedy.getSelectedPortfolio();
+                    this.actualAlgorithmName = greedy.getAlgorithmName();
+                    this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                    return;
+                } else if (choice.equals("4")) {
+                    System.out.println("[INFO] Proceeding with Genetic Algorithm Solver (approximate, adaptive)...");
+                    System.out.println("==================================================\n");
+                    GeneticAlgorithmSolver genetic = new GeneticAlgorithmSolver();
+                    genetic.solve(projects);
+                    this.maxExpectedReturn = genetic.getMaxExpectedReturn();
+                    this.selectedPortfolio = genetic.getSelectedPortfolio();
+                    this.actualAlgorithmName = genetic.getAlgorithmName();
+                    this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                    return;
+                } else {
+                    System.out.println("[ERROR] Invalid choice. Proceeding with Backtracking Solver by default.");
+                    BacktrackingSolver backtracker = new BacktrackingSolver();
+                    backtracker.solve(projects);
+                    this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
+                    this.selectedPortfolio = backtracker.getSelectedPortfolio();
+                    this.actualAlgorithmName = backtracker.getAlgorithmName();
+                    this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
+                    return;
+                }
+            } finally {
+                if (scanner != null) {
+                    scanner.close();
+                }   
             }
-        }
+}
+            
+        
 
         int maxMask = (int) Math.pow(2, maxDeadline);
 

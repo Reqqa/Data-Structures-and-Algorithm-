@@ -1,4 +1,7 @@
+package algorithm;
 import java.util.List;
+
+import model.InvestmentProject;
 
 /**
  * Interface defining the standard behavior for all investment scheduling algorithms.

@@ -1,3 +1,4 @@
+package algorithm;
 
 /**
  * Interface abstracting the core attributes required for the Job Sequencing Problem.

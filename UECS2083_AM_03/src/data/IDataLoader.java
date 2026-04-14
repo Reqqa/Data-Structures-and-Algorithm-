@@ -1,5 +1,8 @@
+package data;
 
 import java.util.List;
+
+import model.InvestmentProject;
 
 /**
  * Interface defining the contract for various data ingestion methods. Enables

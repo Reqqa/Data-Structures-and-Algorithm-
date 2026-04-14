@@ -1,8 +1,11 @@
+package algorithm;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import model.InvestmentProject;
 
 public abstract class AbstractInvestmentSolver implements IInvestmentAlgorithm {
 
@@ -125,5 +128,9 @@ public abstract class AbstractInvestmentSolver implements IInvestmentAlgorithm {
 
     public long getExecutionTime() {
         return executionTimeInMilliseconds;
+    }
+
+    public List<InvestmentProject> getSelectedPortfolio() {
+        return selectedPortfolio;
     }
 }

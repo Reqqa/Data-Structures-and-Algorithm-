@@ -1,7 +1,14 @@
+package Main;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import algorithm.*;
+import data.*;
+import exception.UserInputModificationException;
+import model.InvestmentProject;
+import Solver.*;
 
 public class Main {
 

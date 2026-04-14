@@ -1,6 +1,10 @@
+package Solver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import algorithm.AbstractInvestmentSolver;
+import model.InvestmentProject;
 
 /**
  * Solves the Job Sequencing problem using a Greedy algorithm accelerated by

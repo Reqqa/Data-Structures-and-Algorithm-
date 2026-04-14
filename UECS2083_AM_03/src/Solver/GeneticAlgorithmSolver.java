@@ -1,3 +1,4 @@
+package Solver;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -5,6 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
+import algorithm.AbstractInvestmentSolver;
+import model.InvestmentProject;
 
 /**
  * Solves the Job Sequencing problem using a heuristic Genetic Algorithm.

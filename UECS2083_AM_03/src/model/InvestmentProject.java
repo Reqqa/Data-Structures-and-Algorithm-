@@ -1,5 +1,8 @@
+package model;
 
 import java.util.Objects;
+
+import algorithm.ISchedulableProject;
 
 /**
  * Represents a single financial investment project for the Job Sequencing
