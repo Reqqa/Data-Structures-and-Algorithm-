@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class CsvDataLoader implements IDataLoader {
 
-    private String filename;
+    private final String filename;
 
     public CsvDataLoader(String filename) {
         this.filename = filename;

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class RandomDataLoader implements IDataLoader {
 
-    private int count;
+    private final int count;
 
     public RandomDataLoader(int count) {
         this.count = count;
