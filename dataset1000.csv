@@ -1,0 +1,1001 @@
+Job_ID,Project_Name,Sector,Investment_RM_Billion,Jobs_Created,Deadline_Slot
+J1,Initiative M48,Energy,1.3,21341,19
+J2,Initiative E52,Real Estate,62.7,60109,52
+J3,Initiative B67,Energy,19.6,51392,23
+J4,Initiative Q92,Energy,33.8,8295,193
+J5,Initiative U31,Energy,61.2,55267,11
+J6,Initiative G83,Real Estate,45.1,28104,48
+J7,Initiative W11,Healthcare,79.9,51566,3
+J8,Initiative T43,Energy,82.2,77772,194
+J9,Initiative F51,Finance,21.1,3435,90
+J10,Initiative R74,Energy,50.8,4768,92
+J11,Initiative W36,Healthcare,5.6,16205,88
+J12,Initiative H13,Technology,44.4,21164,194
+J13,Initiative R50,Finance,72.6,20890,134
+J14,Initiative T18,Healthcare,74.9,53420,178
+J15,Initiative Z99,Real Estate,46.4,15086,149
+J16,Initiative Q41,Healthcare,11.4,73249,66
+J17,Initiative G74,Healthcare,75.9,55103,93
+J18,Initiative D86,Technology,74.3,71137,114
+J19,Initiative J11,Healthcare,39.2,28112,65
+J20,Initiative T57,Energy,52.7,14916,10
+J21,Initiative V83,Energy,55.5,51842,148
+J22,Initiative H54,Energy,19.0,78813,33
+J23,Initiative G10,Technology,53.6,14756,147
+J24,Initiative H61,Healthcare,90.3,36492,98
+J25,Initiative M6,Real Estate,71.2,48957,140
+J26,Initiative Y38,Energy,33.0,70678,65
+J27,Initiative Q30,Real Estate,89.6,19635,21
+J28,Initiative A56,Healthcare,38.1,8138,6
+J29,Initiative Z66,Real Estate,82.9,23668,45
+J30,Initiative D98,Real Estate,58.3,5033,187
+J31,Initiative H35,Healthcare,78.3,46309,99
+J32,Initiative P65,Real Estate,81.9,79690,174
+J33,Initiative G31,Real Estate,3.8,32868,115
+J34,Initiative E39,Healthcare,53.8,7366,37
+J35,Initiative H36,Healthcare,26.5,40039,153
+J36,Initiative Z84,Finance,67.7,62093,48
+J37,Initiative L73,Healthcare,22.2,77891,189
+J38,Initiative V87,Energy,55.7,47551,121
+J39,Initiative P64,Healthcare,71.4,12016,18
+J40,Initiative R44,Healthcare,48.1,68522,91
+J41,Initiative X56,Finance,62.0,71948,149
+J42,Initiative I43,Technology,55.6,77369,156
+J43,Initiative L16,Real Estate,40.1,48681,140
+J44,Initiative T5,Energy,73.2,12107,90
+J45,Initiative T90,Healthcare,53.8,43773,2
+J46,Initiative W16,Technology,15.3,65650,80
+J47,Initiative B59,Real Estate,64.6,63792,9
+J48,Initiative Z52,Technology,65.1,75723,170
+J49,Initiative O54,Real Estate,71.3,43431,137
+J50,Initiative C52,Energy,83.3,37818,119
+J51,Initiative N60,Technology,71.9,42817,7
+J52,Initiative C35,Real Estate,83.9,63990,169
+J53,Initiative V1,Healthcare,3.9,74153,131
+J54,Initiative M3,Energy,36.1,41078,155
+J55,Initiative G40,Technology,69.6,77688,72
+J56,Initiative O27,Energy,68.3,68449,76
+J57,Initiative Q10,Healthcare,42.8,27009,168
+J58,Initiative T82,Healthcare,26.7,11990,150
+J59,Initiative Y59,Healthcare,83.5,30782,133
+J60,Initiative D89,Technology,42.8,67441,108
+J61,Initiative M4,Real Estate,41.1,39432,137
+J62,Initiative M85,Technology,73.5,70176,187
+J63,Initiative I26,Healthcare,53.7,22470,180
+J64,Initiative M37,Technology,35.0,68848,156
+J65,Initiative D15,Finance,6.7,70401,11
+J66,Initiative G32,Healthcare,65.8,38301,104
+J67,Initiative J33,Energy,60.8,43068,59
+J68,Initiative F18,Energy,35.5,46290,171
+J69,Initiative T59,Technology,6.4,68437,56
+J70,Initiative J12,Technology,54.2,74664,81
+J71,Initiative D50,Finance,56.1,9858,180
+J72,Initiative S91,Energy,67.4,67854,105
+J73,Initiative F14,Technology,74.6,53349,8
+J74,Initiative N68,Real Estate,43.0,73950,57
+J75,Initiative S90,Technology,1.8,51999,55
+J76,Initiative S11,Technology,43.5,59296,184
+J77,Initiative J45,Technology,65.4,72837,61
+J78,Initiative M71,Energy,59.3,15209,127
+J79,Initiative Q63,Energy,38.1,53821,46
+J80,Initiative A11,Energy,46.2,11427,42
+J81,Initiative B83,Technology,55.8,72714,180
+J82,Initiative X62,Healthcare,78.5,37230,42
+J83,Initiative V87,Real Estate,15.9,34645,67
+J84,Initiative J49,Healthcare,29.3,62100,130
+J85,Initiative X81,Finance,68.1,70024,160
+J86,Initiative Y91,Technology,23.2,4382,171
+J87,Initiative H37,Technology,26.4,47987,197
+J88,Initiative J54,Energy,34.4,63403,97
+J89,Initiative W65,Real Estate,50.7,69923,73
+J90,Initiative Z40,Technology,23.3,73313,70
+J91,Initiative E30,Energy,47.3,58009,153
+J92,Initiative H74,Healthcare,66.5,11867,14
+J93,Initiative R74,Healthcare,28.8,5510,41
+J94,Initiative S26,Energy,35.2,40869,188
+J95,Initiative O10,Healthcare,23.4,54217,117
+J96,Initiative P87,Technology,15.2,50161,9
+J97,Initiative B14,Real Estate,90.8,7421,168
+J98,Initiative X26,Energy,40.2,46798,8
+J99,Initiative P93,Technology,70.9,49579,87
+J100,Initiative E51,Energy,28.4,46545,196
+J101,Initiative Y52,Energy,68.4,36772,198
+J102,Initiative W42,Healthcare,30.8,19391,11
+J103,Initiative Y29,Finance,51.6,39376,28
+J104,Initiative E91,Healthcare,37.1,9044,136
+J105,Initiative G69,Finance,45.3,30530,158
+J106,Initiative M2,Healthcare,9.2,18573,70
+J107,Initiative I79,Energy,26.0,32153,107
+J108,Initiative H62,Energy,40.5,79558,193
+J109,Initiative V70,Energy,11.6,63166,122
+J110,Initiative F94,Real Estate,61.7,21964,20
+J111,Initiative O59,Energy,81.3,8768,9
+J112,Initiative M40,Finance,51.9,67461,30
+J113,Initiative A91,Technology,58.7,53555,106
+J114,Initiative M84,Technology,10.5,43643,58
+J115,Initiative O76,Real Estate,9.3,13690,55
+J116,Initiative N68,Energy,84.1,22076,48
+J117,Initiative N15,Real Estate,42.4,55339,134
+J118,Initiative J2,Finance,67.9,18322,12
+J119,Initiative Q81,Energy,51.6,43967,135
+J120,Initiative I56,Technology,44.9,63813,156
+J121,Initiative L39,Healthcare,51.5,68077,131
+J122,Initiative R25,Energy,33.1,46259,44
+J123,Initiative W53,Finance,46.6,15790,173
+J124,Initiative R54,Technology,86.0,48933,135
+J125,Initiative Z53,Finance,61.7,71420,131
+J126,Initiative Z6,Technology,72.0,29813,161
+J127,Initiative N61,Energy,41.3,53784,1
+J128,Initiative N5,Energy,69.1,9130,71
+J129,Initiative V99,Technology,57.4,28966,101
+J130,Initiative P6,Finance,32.5,32341,153
+J131,Initiative W29,Real Estate,35.0,68896,170
+J132,Initiative E90,Real Estate,87.0,10152,65
+J133,Initiative P5,Finance,85.5,22205,108
+J134,Initiative G58,Finance,27.6,60351,101
+J135,Initiative T41,Healthcare,46.5,37381,62
+J136,Initiative K30,Energy,29.2,57945,139
+J137,Initiative Q21,Healthcare,63.3,2286,11
+J138,Initiative E97,Finance,6.7,31937,144
+J139,Initiative C47,Technology,69.8,54277,30
+J140,Initiative J62,Energy,50.7,55003,95
+J141,Initiative G81,Finance,56.0,27187,54
+J142,Initiative B97,Real Estate,46.1,14552,115
+J143,Initiative Q39,Finance,33.5,5990,189
+J144,Initiative V37,Real Estate,43.8,32715,137
+J145,Initiative N7,Finance,60.4,37103,37
+J146,Initiative N1,Real Estate,72.9,13787,144
+J147,Initiative U79,Finance,53.4,1307,8
+J148,Initiative Q27,Finance,8.9,14088,23
+J149,Initiative B21,Healthcare,29.3,31262,162
+J150,Initiative T88,Energy,84.8,72973,49
+J151,Initiative D92,Energy,83.6,57992,145
+J152,Initiative H97,Technology,13.8,61579,51
+J153,Initiative U72,Healthcare,38.8,69037,35
+J154,Initiative Y8,Real Estate,14.0,71240,52
+J155,Initiative U53,Technology,90.6,62699,109
+J156,Initiative Y73,Healthcare,31.9,68715,38
+J157,Initiative L56,Energy,53.9,50677,41
+J158,Initiative B67,Real Estate,64.6,37964,69
+J159,Initiative X66,Technology,54.8,26976,77
+J160,Initiative Y93,Finance,73.7,25333,51
+J161,Initiative W69,Healthcare,53.3,30279,134
+J162,Initiative T99,Healthcare,5.2,6446,200
+J163,Initiative V33,Finance,73.0,62856,193
+J164,Initiative X28,Finance,11.7,57969,5
+J165,Initiative R5,Finance,86.8,68269,61
+J166,Initiative B2,Finance,56.1,72932,161
+J167,Initiative V79,Real Estate,49.3,25294,127
+J168,Initiative J74,Finance,42.2,33016,175
+J169,Initiative G66,Energy,23.4,65845,116
+J170,Initiative M68,Healthcare,67.3,57718,162
+J171,Initiative U82,Healthcare,23.1,18510,130
+J172,Initiative V51,Healthcare,11.6,44793,32
+J173,Initiative L71,Energy,53.6,30322,14
+J174,Initiative G92,Technology,27.1,14152,168
+J175,Initiative J12,Finance,83.7,23771,7
+J176,Initiative B95,Real Estate,27.2,23507,136
+J177,Initiative O83,Finance,17.2,53641,75
+J178,Initiative J9,Finance,55.3,26252,10
+J179,Initiative W59,Real Estate,41.6,10660,131
+J180,Initiative J38,Finance,91.0,39061,91
+J181,Initiative Z74,Technology,85.7,25580,136
+J182,Initiative F73,Energy,56.4,67404,159
+J183,Initiative Z90,Healthcare,46.4,18939,88
+J184,Initiative V83,Technology,49.6,12890,127
+J185,Initiative Y8,Finance,16.3,55087,27
+J186,Initiative K42,Finance,24.8,66332,131
+J187,Initiative J77,Finance,85.1,71483,125
+J188,Initiative H76,Technology,83.1,50376,60
+J189,Initiative L79,Technology,69.5,63484,168
+J190,Initiative G6,Technology,8.6,15461,198
+J191,Initiative Z89,Energy,42.5,68556,52
+J192,Initiative Y96,Finance,45.4,11312,80
+J193,Initiative H77,Finance,28.6,52653,24
+J194,Initiative U78,Healthcare,80.2,31189,104
+J195,Initiative V17,Energy,63.8,59341,30
+J196,Initiative F4,Finance,23.5,65865,36
+J197,Initiative I13,Technology,60.0,44286,7
+J198,Initiative M59,Energy,18.4,66539,5
+J199,Initiative Q13,Technology,63.2,16598,106
+J200,Initiative B88,Real Estate,10.6,73869,48
+J201,Initiative W4,Finance,83.3,55908,124
+J202,Initiative V83,Technology,33.8,34728,81
+J203,Initiative K91,Energy,77.5,43488,109
+J204,Initiative W42,Energy,70.7,27325,191
+J205,Initiative O63,Technology,25.1,67206,179
+J206,Initiative G74,Energy,3.5,17113,7
+J207,Initiative P52,Healthcare,5.9,31178,107
+J208,Initiative S66,Healthcare,29.1,65528,7
+J209,Initiative A78,Healthcare,45.1,1230,183
+J210,Initiative G61,Energy,33.6,52872,20
+J211,Initiative P36,Finance,77.6,14081,34
+J212,Initiative G73,Technology,53.2,68351,72
+J213,Initiative N19,Finance,45.5,40995,76
+J214,Initiative Z26,Energy,73.5,3722,67
+J215,Initiative J88,Energy,18.0,36420,119
+J216,Initiative G12,Energy,36.9,63117,7
+J217,Initiative A91,Energy,73.9,15550,129
+J218,Initiative D71,Healthcare,83.2,47403,156
+J219,Initiative Y18,Healthcare,20.7,28682,97
+J220,Initiative L50,Finance,67.7,17498,158
+J221,Initiative C15,Real Estate,63.8,50975,196
+J222,Initiative Q80,Technology,77.3,54396,166
+J223,Initiative F18,Technology,90.3,27402,11
+J224,Initiative B25,Finance,44.9,55095,11
+J225,Initiative H48,Healthcare,51.0,22180,45
+J226,Initiative A39,Technology,35.1,30022,118
+J227,Initiative S20,Energy,70.9,36061,38
+J228,Initiative B74,Technology,69.1,10699,3
+J229,Initiative I23,Finance,3.3,66621,140
+J230,Initiative K81,Real Estate,36.9,19856,35
+J231,Initiative L33,Finance,31.8,78666,28
+J232,Initiative B36,Real Estate,28.7,67188,17
+J233,Initiative D78,Energy,32.1,61894,63
+J234,Initiative L15,Real Estate,63.5,24147,176
+J235,Initiative P27,Finance,47.5,64679,33
+J236,Initiative Q18,Finance,16.8,13251,144
+J237,Initiative C50,Finance,9.0,54778,84
+J238,Initiative S9,Energy,78.9,33222,28
+J239,Initiative O21,Healthcare,18.5,62176,188
+J240,Initiative I53,Technology,8.3,5271,193
+J241,Initiative G46,Energy,88.3,53641,30
+J242,Initiative M17,Energy,10.9,13517,81
+J243,Initiative T44,Energy,52.1,46111,18
+J244,Initiative Z53,Technology,4.3,78561,34
+J245,Initiative J54,Real Estate,13.1,22989,98
+J246,Initiative Z41,Real Estate,41.7,31876,55
+J247,Initiative Y49,Finance,77.3,8463,139
+J248,Initiative B82,Healthcare,41.2,32896,133
+J249,Initiative B12,Finance,72.0,55334,113
+J250,Initiative B65,Energy,44.0,63217,44
+J251,Initiative S28,Healthcare,81.1,58053,37
+J252,Initiative R27,Energy,85.0,25915,73
+J253,Initiative A32,Real Estate,59.4,11752,64
+J254,Initiative K67,Finance,69.2,11471,194
+J255,Initiative D50,Real Estate,88.0,52419,173
+J256,Initiative P90,Finance,82.0,53988,160
+J257,Initiative V56,Energy,81.4,9462,179
+J258,Initiative U52,Healthcare,67.8,21757,77
+J259,Initiative G38,Energy,1.5,80163,182
+J260,Initiative T22,Finance,65.8,58517,68
+J261,Initiative X34,Energy,84.6,32374,169
+J262,Initiative A13,Real Estate,66.4,48910,192
+J263,Initiative M29,Technology,70.9,72662,185
+J264,Initiative V65,Finance,24.0,30218,151
+J265,Initiative A74,Energy,44.1,16168,58
+J266,Initiative K80,Real Estate,49.6,47987,75
+J267,Initiative A22,Energy,30.3,47504,172
+J268,Initiative E87,Real Estate,91.0,39974,159
+J269,Initiative L35,Technology,56.0,55003,3
+J270,Initiative N52,Energy,34.5,50124,171
+J271,Initiative H86,Energy,73.2,23369,126
+J272,Initiative F66,Technology,13.8,45194,155
+J273,Initiative J54,Healthcare,16.4,34566,154
+J274,Initiative Y60,Real Estate,84.5,1110,149
+J275,Initiative Y85,Finance,49.4,16872,32
+J276,Initiative N33,Healthcare,57.3,26969,62
+J277,Initiative T87,Technology,43.1,11000,45
+J278,Initiative L51,Finance,88.9,7285,104
+J279,Initiative T25,Energy,53.7,14471,135
+J280,Initiative N59,Energy,49.3,1679,62
+J281,Initiative S85,Energy,58.2,71092,157
+J282,Initiative V59,Healthcare,82.3,61930,94
+J283,Initiative H62,Healthcare,87.4,71638,101
+J284,Initiative M95,Finance,53.0,64008,88
+J285,Initiative L20,Real Estate,82.5,26213,81
+J286,Initiative L48,Healthcare,84.3,26135,142
+J287,Initiative O19,Finance,84.2,8358,151
+J288,Initiative C73,Energy,66.0,61205,162
+J289,Initiative H54,Real Estate,67.2,39409,70
+J290,Initiative H60,Technology,85.1,75894,194
+J291,Initiative P97,Finance,75.8,12683,48
+J292,Initiative Q85,Technology,51.7,13633,37
+J293,Initiative J67,Finance,55.0,50741,98
+J294,Initiative G29,Technology,4.8,9634,48
+J295,Initiative T7,Technology,40.0,71462,4
+J296,Initiative L61,Finance,3.8,7978,198
+J297,Initiative M90,Healthcare,72.7,7893,111
+J298,Initiative M89,Healthcare,74.8,78980,175
+J299,Initiative F83,Healthcare,16.7,33669,152
+J300,Initiative P18,Energy,69.9,58627,64
+J301,Initiative B38,Technology,50.1,69046,37
+J302,Initiative I75,Healthcare,18.1,15143,15
+J303,Initiative A87,Real Estate,48.5,67888,62
+J304,Initiative N63,Energy,6.1,29999,17
+J305,Initiative R45,Finance,16.2,45714,161
+J306,Initiative D87,Real Estate,15.1,26270,37
+J307,Initiative T28,Finance,11.3,17610,46
+J308,Initiative E81,Healthcare,9.5,33153,135
+J309,Initiative T13,Finance,41.0,40110,91
+J310,Initiative E77,Finance,7.8,62874,90
+J311,Initiative F8,Healthcare,35.8,20825,176
+J312,Initiative Z35,Energy,81.8,35991,157
+J313,Initiative B32,Technology,22.7,16307,155
+J314,Initiative Z7,Finance,26.3,12434,150
+J315,Initiative V5,Real Estate,31.2,19371,45
+J316,Initiative U51,Real Estate,27.3,50908,191
+J317,Initiative H5,Finance,83.3,14240,163
+J318,Initiative D24,Technology,45.0,10514,46
+J319,Initiative B15,Healthcare,82.5,56029,180
+J320,Initiative L99,Finance,26.4,10917,198
+J321,Initiative D42,Energy,35.9,80225,128
+J322,Initiative N85,Finance,80.3,72877,40
+J323,Initiative I67,Energy,78.9,16002,106
+J324,Initiative F37,Healthcare,14.5,59116,49
+J325,Initiative M64,Energy,30.7,30470,51
+J326,Initiative E98,Healthcare,76.7,29447,71
+J327,Initiative J42,Energy,31.1,70117,98
+J328,Initiative A62,Healthcare,22.2,55345,89
+J329,Initiative G80,Real Estate,90.5,2329,37
+J330,Initiative Q79,Healthcare,52.6,76290,111
+J331,Initiative N27,Finance,31.9,38516,187
+J332,Initiative D33,Energy,88.6,8054,144
+J333,Initiative Q8,Healthcare,32.8,32021,198
+J334,Initiative Z86,Energy,55.7,34194,6
+J335,Initiative K60,Energy,83.3,62786,120
+J336,Initiative N1,Energy,15.9,55010,55
+J337,Initiative B37,Energy,62.8,46712,30
+J338,Initiative I5,Energy,41.7,12323,84
+J339,Initiative P88,Healthcare,52.2,31024,170
+J340,Initiative M73,Energy,29.6,13942,9
+J341,Initiative Z28,Energy,20.0,58749,110
+J342,Initiative T21,Real Estate,29.5,68399,1
+J343,Initiative K54,Healthcare,62.9,15408,1
+J344,Initiative X72,Technology,1.6,26099,23
+J345,Initiative R90,Finance,26.4,39408,55
+J346,Initiative X41,Energy,15.9,29925,1
+J347,Initiative J17,Finance,34.0,6190,129
+J348,Initiative S62,Healthcare,75.8,1749,42
+J349,Initiative Y23,Finance,67.3,58790,10
+J350,Initiative K65,Energy,86.6,5628,86
+J351,Initiative U45,Technology,45.3,29589,57
+J352,Initiative W80,Finance,18.8,3441,176
+J353,Initiative H4,Finance,57.2,47888,7
+J354,Initiative R27,Healthcare,24.3,29343,43
+J355,Initiative O81,Healthcare,52.8,71666,190
+J356,Initiative C72,Healthcare,76.2,50738,188
+J357,Initiative M37,Real Estate,79.1,41460,175
+J358,Initiative W93,Finance,5.9,58874,137
+J359,Initiative W7,Energy,17.5,47168,6
+J360,Initiative C57,Healthcare,89.7,1913,93
+J361,Initiative T14,Real Estate,49.2,74817,141
+J362,Initiative Y21,Energy,41.5,56169,159
+J363,Initiative X65,Energy,36.6,21576,160
+J364,Initiative V71,Technology,6.2,79515,129
+J365,Initiative U16,Energy,84.8,33669,34
+J366,Initiative Y93,Healthcare,49.5,64457,10
+J367,Initiative H10,Energy,14.1,59051,15
+J368,Initiative P48,Real Estate,56.2,58237,16
+J369,Initiative B8,Finance,44.5,5124,54
+J370,Initiative M11,Healthcare,17.1,29920,190
+J371,Initiative U38,Technology,30.5,17414,134
+J372,Initiative I30,Finance,58.1,48083,72
+J373,Initiative J37,Healthcare,39.6,4207,123
+J374,Initiative N0,Healthcare,2.9,31599,32
+J375,Initiative Y83,Technology,34.9,72889,7
+J376,Initiative F72,Energy,55.1,78335,72
+J377,Initiative B16,Energy,27.1,76342,187
+J378,Initiative Q58,Technology,11.2,36319,194
+J379,Initiative K69,Technology,46.5,11341,62
+J380,Initiative Z84,Finance,24.2,58125,141
+J381,Initiative K25,Healthcare,30.9,40963,34
+J382,Initiative C97,Finance,62.1,18576,106
+J383,Initiative H73,Energy,59.2,43769,169
+J384,Initiative T23,Real Estate,31.7,63443,19
+J385,Initiative Z23,Real Estate,25.5,48077,182
+J386,Initiative M95,Real Estate,35.7,53830,56
+J387,Initiative I62,Healthcare,41.1,66633,194
+J388,Initiative W82,Real Estate,86.7,66094,170
+J389,Initiative L9,Real Estate,2.3,72333,75
+J390,Initiative E92,Energy,80.1,17590,153
+J391,Initiative T36,Real Estate,58.2,45794,60
+J392,Initiative S37,Finance,73.2,65376,14
+J393,Initiative U13,Real Estate,55.8,35736,60
+J394,Initiative U36,Finance,16.2,70453,188
+J395,Initiative P14,Healthcare,87.9,13677,18
+J396,Initiative J53,Energy,59.9,55566,129
+J397,Initiative F87,Real Estate,79.4,26898,133
+J398,Initiative B64,Technology,38.2,42377,32
+J399,Initiative R87,Real Estate,32.6,73238,32
+J400,Initiative V3,Finance,11.9,36446,96
+J401,Initiative J27,Healthcare,47.6,16515,92
+J402,Initiative D76,Healthcare,61.6,32849,56
+J403,Initiative N66,Technology,41.8,16568,152
+J404,Initiative T51,Real Estate,33.4,78006,88
+J405,Initiative L19,Energy,49.0,39569,141
+J406,Initiative Y7,Healthcare,84.1,26518,53
+J407,Initiative C44,Technology,65.7,19872,53
+J408,Initiative C72,Energy,28.8,33944,52
+J409,Initiative I92,Real Estate,78.5,6993,197
+J410,Initiative H34,Finance,85.0,72060,150
+J411,Initiative R14,Finance,53.0,6131,198
+J412,Initiative C25,Technology,17.8,45473,52
+J413,Initiative B27,Real Estate,16.9,44739,14
+J414,Initiative D67,Healthcare,6.6,56843,6
+J415,Initiative D67,Real Estate,78.1,65462,65
+J416,Initiative Y82,Technology,27.6,29225,36
+J417,Initiative I29,Finance,29.6,29921,186
+J418,Initiative K57,Finance,64.4,1951,98
+J419,Initiative T39,Technology,13.9,19057,40
+J420,Initiative I74,Healthcare,22.3,30718,95
+J421,Initiative L56,Healthcare,85.5,74972,75
+J422,Initiative D0,Finance,14.1,66040,45
+J423,Initiative K31,Energy,24.1,31096,154
+J424,Initiative D72,Real Estate,79.4,40513,103
+J425,Initiative F45,Healthcare,88.7,6507,103
+J426,Initiative X7,Finance,41.6,52579,97
+J427,Initiative Z18,Technology,81.3,19023,23
+J428,Initiative K89,Technology,63.2,54250,99
+J429,Initiative H0,Real Estate,73.5,60488,90
+J430,Initiative R75,Energy,44.0,57998,181
+J431,Initiative N77,Healthcare,87.3,64432,142
+J432,Initiative M43,Energy,2.1,52192,100
+J433,Initiative E62,Technology,35.1,20161,148
+J434,Initiative H49,Technology,75.6,51697,86
+J435,Initiative B63,Finance,78.1,72754,163
+J436,Initiative P9,Finance,1.7,14009,165
+J437,Initiative L82,Energy,43.3,46703,169
+J438,Initiative X80,Technology,12.3,30945,123
+J439,Initiative N3,Real Estate,64.8,34448,176
+J440,Initiative H40,Technology,38.2,45464,102
+J441,Initiative O3,Healthcare,47.4,22542,104
+J442,Initiative F96,Energy,17.0,19256,184
+J443,Initiative M28,Technology,15.9,30221,70
+J444,Initiative G30,Energy,54.3,15789,28
+J445,Initiative V58,Healthcare,64.8,36722,35
+J446,Initiative U42,Real Estate,75.4,65448,30
+J447,Initiative E23,Technology,7.6,38776,109
+J448,Initiative V55,Real Estate,75.9,13006,127
+J449,Initiative X61,Healthcare,4.4,55322,14
+J450,Initiative A84,Technology,34.4,71079,181
+J451,Initiative N56,Finance,15.9,48728,38
+J452,Initiative F56,Finance,64.7,61244,127
+J453,Initiative X75,Energy,63.5,23148,123
+J454,Initiative S6,Technology,66.7,2299,175
+J455,Initiative J94,Real Estate,58.5,14638,177
+J456,Initiative W12,Energy,17.1,27385,141
+J457,Initiative K94,Real Estate,19.2,30085,98
+J458,Initiative O51,Real Estate,84.1,73197,147
+J459,Initiative U53,Finance,21.4,8410,162
+J460,Initiative M73,Finance,72.0,5709,195
+J461,Initiative U31,Finance,31.8,57779,6
+J462,Initiative B71,Real Estate,1.4,19347,83
+J463,Initiative A19,Finance,55.5,66596,190
+J464,Initiative B60,Real Estate,1.1,35680,80
+J465,Initiative Y86,Finance,44.4,51976,178
+J466,Initiative Z81,Healthcare,50.6,55998,50
+J467,Initiative E2,Technology,68.8,66273,186
+J468,Initiative E2,Technology,62.5,26361,180
+J469,Initiative J75,Finance,34.3,66069,28
+J470,Initiative J49,Real Estate,75.5,25612,157
+J471,Initiative D58,Energy,32.1,9271,44
+J472,Initiative T28,Real Estate,23.1,75998,115
+J473,Initiative F9,Real Estate,63.9,72888,8
+J474,Initiative B4,Energy,31.8,19728,76
+J475,Initiative X82,Real Estate,55.7,19077,34
+J476,Initiative D82,Real Estate,62.0,48205,127
+J477,Initiative M81,Finance,11.4,17436,133
+J478,Initiative Y92,Technology,2.5,10276,45
+J479,Initiative S30,Energy,86.7,14570,88
+J480,Initiative R95,Real Estate,79.5,25247,15
+J481,Initiative D6,Healthcare,59.4,1988,78
+J482,Initiative D57,Real Estate,39.9,25560,134
+J483,Initiative Y4,Finance,43.5,45289,191
+J484,Initiative I44,Finance,43.3,60165,191
+J485,Initiative G21,Technology,40.6,69066,63
+J486,Initiative C96,Real Estate,44.7,20860,13
+J487,Initiative T47,Finance,20.3,78768,119
+J488,Initiative K50,Energy,4.5,69858,188
+J489,Initiative Q56,Finance,74.1,36274,87
+J490,Initiative K59,Technology,46.0,19920,77
+J491,Initiative H78,Finance,55.0,14587,103
+J492,Initiative B16,Healthcare,44.2,46673,134
+J493,Initiative O5,Finance,6.9,17758,109
+J494,Initiative K54,Real Estate,83.4,46676,151
+J495,Initiative O49,Technology,8.6,79776,67
+J496,Initiative K90,Finance,21.0,61368,136
+J497,Initiative N12,Technology,50.1,49446,51
+J498,Initiative E69,Healthcare,50.2,48691,154
+J499,Initiative W99,Technology,78.2,22704,83
+J500,Initiative B76,Finance,17.7,18066,199
+J501,Initiative U89,Finance,63.3,72591,135
+J502,Initiative Y64,Healthcare,33.0,75218,184
+J503,Initiative W20,Real Estate,31.2,67134,28
+J504,Initiative Z71,Healthcare,64.6,70467,70
+J505,Initiative M81,Real Estate,39.5,77852,90
+J506,Initiative X52,Healthcare,27.2,71806,55
+J507,Initiative H13,Real Estate,10.8,4553,39
+J508,Initiative Q5,Technology,29.9,45596,59
+J509,Initiative G32,Energy,86.1,36684,48
+J510,Initiative R7,Technology,13.0,24250,9
+J511,Initiative I35,Technology,82.5,18873,158
+J512,Initiative Y14,Healthcare,43.2,60791,49
+J513,Initiative O86,Healthcare,88.0,34730,78
+J514,Initiative L71,Healthcare,10.8,74031,184
+J515,Initiative G28,Technology,56.2,70289,182
+J516,Initiative S82,Real Estate,88.4,27508,90
+J517,Initiative I66,Healthcare,79.8,66691,194
+J518,Initiative F32,Energy,21.4,44086,65
+J519,Initiative N29,Technology,21.4,28073,160
+J520,Initiative H6,Energy,44.7,60634,31
+J521,Initiative H95,Finance,73.6,41535,124
+J522,Initiative Y28,Finance,66.8,57352,132
+J523,Initiative S29,Real Estate,41.5,71580,81
+J524,Initiative Y75,Energy,67.9,62098,22
+J525,Initiative T97,Technology,13.2,52951,58
+J526,Initiative G77,Healthcare,28.9,7694,61
+J527,Initiative R87,Real Estate,78.1,14797,114
+J528,Initiative W21,Technology,3.2,11974,55
+J529,Initiative W87,Energy,75.1,33895,106
+J530,Initiative X13,Finance,87.7,32844,130
+J531,Initiative E69,Technology,73.9,16010,9
+J532,Initiative I86,Real Estate,27.6,20127,132
+J533,Initiative Y57,Finance,30.1,36584,137
+J534,Initiative E87,Healthcare,87.0,31215,49
+J535,Initiative W9,Energy,66.1,29268,52
+J536,Initiative F26,Healthcare,38.6,46245,44
+J537,Initiative D49,Healthcare,8.5,47493,89
+J538,Initiative N9,Real Estate,38.0,1919,77
+J539,Initiative K89,Finance,43.2,59331,7
+J540,Initiative U80,Real Estate,52.8,32951,195
+J541,Initiative D76,Real Estate,5.6,76816,144
+J542,Initiative P41,Finance,84.9,1575,164
+J543,Initiative T81,Technology,40.3,56593,140
+J544,Initiative I23,Finance,26.8,10802,97
+J545,Initiative J31,Technology,54.9,45080,130
+J546,Initiative D58,Energy,61.4,57257,24
+J547,Initiative U44,Technology,76.5,49594,105
+J548,Initiative A55,Real Estate,18.7,2343,148
+J549,Initiative M55,Energy,34.7,80289,17
+J550,Initiative B1,Real Estate,21.9,37222,48
+J551,Initiative H33,Energy,35.5,17093,48
+J552,Initiative A75,Finance,5.9,61885,163
+J553,Initiative X74,Technology,9.2,12535,92
+J554,Initiative S46,Real Estate,57.4,45842,155
+J555,Initiative E60,Energy,56.9,67115,78
+J556,Initiative B24,Real Estate,33.3,28206,144
+J557,Initiative J52,Technology,87.3,35240,163
+J558,Initiative L88,Finance,37.7,893,153
+J559,Initiative C26,Technology,55.9,51546,6
+J560,Initiative J96,Healthcare,2.2,59109,114
+J561,Initiative O46,Healthcare,56.5,40982,115
+J562,Initiative D36,Finance,35.4,35973,173
+J563,Initiative B9,Technology,32.2,25693,167
+J564,Initiative F89,Real Estate,68.1,36542,166
+J565,Initiative I10,Real Estate,12.4,33454,109
+J566,Initiative W49,Energy,81.8,38177,58
+J567,Initiative E85,Finance,85.9,50595,105
+J568,Initiative A65,Energy,90.9,41182,177
+J569,Initiative A88,Energy,76.9,6208,145
+J570,Initiative U49,Energy,89.1,62223,152
+J571,Initiative P53,Technology,83.3,3553,199
+J572,Initiative M42,Technology,68.2,44346,75
+J573,Initiative X21,Technology,34.3,10994,152
+J574,Initiative E53,Real Estate,35.2,40103,140
+J575,Initiative B10,Technology,27.2,79774,38
+J576,Initiative T11,Energy,8.1,22060,162
+J577,Initiative E74,Technology,14.3,33627,47
+J578,Initiative U44,Technology,38.0,77248,185
+J579,Initiative B7,Finance,64.0,25170,131
+J580,Initiative I2,Real Estate,28.6,66744,177
+J581,Initiative U19,Finance,30.9,56113,56
+J582,Initiative Y58,Finance,72.4,52551,95
+J583,Initiative B73,Real Estate,63.2,5170,177
+J584,Initiative V63,Real Estate,40.1,56165,123
+J585,Initiative H51,Real Estate,28.0,73511,43
+J586,Initiative B24,Real Estate,41.7,46056,190
+J587,Initiative T69,Healthcare,74.4,27923,161
+J588,Initiative X6,Energy,52.8,33599,25
+J589,Initiative G81,Finance,40.9,16735,178
+J590,Initiative N47,Finance,37.1,74332,70
+J591,Initiative D20,Healthcare,33.4,25201,4
+J592,Initiative J52,Healthcare,77.5,44146,69
+J593,Initiative O21,Real Estate,50.5,50431,171
+J594,Initiative W82,Energy,59.4,72154,47
+J595,Initiative B75,Technology,64.8,71444,131
+J596,Initiative N35,Finance,36.8,33545,33
+J597,Initiative Q17,Finance,42.2,41963,30
+J598,Initiative P53,Real Estate,31.4,14753,64
+J599,Initiative L45,Finance,73.0,62296,143
+J600,Initiative C76,Real Estate,88.9,75469,64
+J601,Initiative E33,Technology,24.7,29591,102
+J602,Initiative H24,Technology,24.7,12203,54
+J603,Initiative V50,Healthcare,50.9,69902,92
+J604,Initiative B51,Healthcare,48.6,17089,72
+J605,Initiative S61,Finance,4.0,33024,101
+J606,Initiative A59,Energy,26.0,4725,123
+J607,Initiative E29,Healthcare,82.0,69131,167
+J608,Initiative H70,Technology,62.6,71106,73
+J609,Initiative S79,Energy,85.6,64318,48
+J610,Initiative K78,Finance,21.0,25970,152
+J611,Initiative O78,Real Estate,58.8,53571,128
+J612,Initiative R12,Energy,20.1,23108,149
+J613,Initiative Q75,Healthcare,20.8,71999,58
+J614,Initiative P77,Healthcare,27.9,6166,136
+J615,Initiative C50,Energy,87.3,27418,122
+J616,Initiative M8,Technology,46.6,69296,37
+J617,Initiative N4,Energy,46.6,42650,30
+J618,Initiative F22,Energy,90.9,29447,122
+J619,Initiative J69,Healthcare,38.5,70976,30
+J620,Initiative Y85,Real Estate,54.2,69090,196
+J621,Initiative P52,Technology,31.7,40198,92
+J622,Initiative Q19,Energy,65.1,41576,122
+J623,Initiative R39,Finance,56.5,11455,159
+J624,Initiative D49,Real Estate,28.1,46408,99
+J625,Initiative B95,Energy,12.1,56687,44
+J626,Initiative L24,Energy,6.5,74567,149
+J627,Initiative X42,Energy,71.9,47260,144
+J628,Initiative Q70,Energy,10.1,4125,66
+J629,Initiative H89,Technology,12.7,45997,33
+J630,Initiative E33,Energy,45.2,10926,23
+J631,Initiative X35,Technology,79.9,32286,145
+J632,Initiative D86,Real Estate,75.1,58315,166
+J633,Initiative I90,Healthcare,46.1,34137,85
+J634,Initiative X45,Finance,76.0,11597,147
+J635,Initiative U19,Energy,86.1,50870,128
+J636,Initiative X52,Real Estate,65.0,60135,148
+J637,Initiative J79,Real Estate,28.5,27588,139
+J638,Initiative O90,Healthcare,4.3,47821,134
+J639,Initiative R31,Technology,57.6,14724,124
+J640,Initiative K28,Healthcare,1.8,7631,57
+J641,Initiative D78,Energy,69.8,70669,2
+J642,Initiative I11,Healthcare,24.5,31673,32
+J643,Initiative R33,Real Estate,7.7,38395,139
+J644,Initiative C43,Technology,54.3,21223,12
+J645,Initiative X98,Healthcare,76.6,41047,37
+J646,Initiative H89,Healthcare,31.9,20239,176
+J647,Initiative W21,Real Estate,43.9,56618,141
+J648,Initiative V59,Finance,24.3,28921,26
+J649,Initiative C15,Finance,31.1,17821,48
+J650,Initiative X33,Technology,75.2,63724,10
+J651,Initiative G63,Healthcare,16.4,53150,177
+J652,Initiative Z42,Technology,33.7,70067,141
+J653,Initiative M34,Finance,15.9,48298,5
+J654,Initiative T86,Finance,16.3,53212,56
+J655,Initiative E10,Healthcare,8.9,5232,172
+J656,Initiative P27,Healthcare,5.1,62659,97
+J657,Initiative C26,Finance,3.2,73393,28
+J658,Initiative T46,Healthcare,37.0,34760,186
+J659,Initiative L59,Finance,46.6,73055,194
+J660,Initiative X94,Healthcare,67.6,45846,35
+J661,Initiative J66,Real Estate,31.6,13950,98
+J662,Initiative S67,Energy,52.2,19713,99
+J663,Initiative G89,Healthcare,78.7,65570,12
+J664,Initiative O57,Healthcare,56.8,6582,31
+J665,Initiative S57,Energy,62.8,14287,81
+J666,Initiative N49,Healthcare,55.5,12019,194
+J667,Initiative N50,Real Estate,24.8,66246,129
+J668,Initiative R59,Energy,86.6,16714,189
+J669,Initiative G68,Energy,78.6,52043,45
+J670,Initiative G16,Finance,11.5,54380,81
+J671,Initiative S54,Finance,30.0,2743,40
+J672,Initiative R77,Energy,48.4,5295,160
+J673,Initiative U11,Energy,13.9,41109,56
+J674,Initiative B28,Healthcare,20.8,22931,125
+J675,Initiative S83,Real Estate,40.7,9317,34
+J676,Initiative S13,Finance,78.5,73276,155
+J677,Initiative L89,Healthcare,27.4,44165,83
+J678,Initiative F1,Healthcare,35.6,25197,131
+J679,Initiative C81,Real Estate,34.8,26637,142
+J680,Initiative R91,Real Estate,7.6,53277,65
+J681,Initiative D30,Real Estate,87.5,14971,21
+J682,Initiative C53,Real Estate,87.8,9617,51
+J683,Initiative M0,Technology,22.5,21146,46
+J684,Initiative B40,Healthcare,20.6,54990,32
+J685,Initiative I98,Real Estate,18.4,33368,168
+J686,Initiative N29,Technology,54.1,58229,27
+J687,Initiative G13,Technology,41.1,27439,55
+J688,Initiative Q10,Finance,67.2,66623,67
+J689,Initiative Y20,Healthcare,65.5,53266,183
+J690,Initiative K79,Finance,28.7,46937,155
+J691,Initiative S70,Energy,86.1,14923,117
+J692,Initiative U85,Finance,89.7,33935,170
+J693,Initiative U17,Real Estate,5.6,50539,52
+J694,Initiative S73,Finance,2.3,3545,112
+J695,Initiative N90,Finance,29.5,64528,131
+J696,Initiative V27,Technology,77.8,62697,142
+J697,Initiative P55,Real Estate,85.0,68679,46
+J698,Initiative D92,Real Estate,10.5,58007,151
+J699,Initiative Q73,Technology,55.6,9256,49
+J700,Initiative S58,Energy,11.1,77700,197
+J701,Initiative Y10,Real Estate,81.4,56865,121
+J702,Initiative M20,Real Estate,57.5,66062,56
+J703,Initiative M84,Energy,59.8,41294,136
+J704,Initiative O48,Real Estate,70.9,27327,39
+J705,Initiative T10,Real Estate,56.2,78113,198
+J706,Initiative C84,Real Estate,63.4,14074,172
+J707,Initiative R81,Energy,70.6,58861,80
+J708,Initiative Y5,Technology,51.5,38625,117
+J709,Initiative H71,Finance,14.7,80212,113
+J710,Initiative Z79,Real Estate,39.2,7404,76
+J711,Initiative Y14,Energy,15.5,35824,146
+J712,Initiative A62,Finance,82.5,39158,188
+J713,Initiative R86,Energy,47.4,66688,65
+J714,Initiative A65,Technology,57.1,34420,200
+J715,Initiative R72,Healthcare,10.1,25502,161
+J716,Initiative K19,Healthcare,71.9,65358,122
+J717,Initiative I77,Healthcare,5.5,74906,83
+J718,Initiative U29,Energy,24.6,57198,185
+J719,Initiative S48,Energy,57.6,66985,3
+J720,Initiative P97,Finance,73.7,1561,60
+J721,Initiative T99,Finance,72.9,3677,71
+J722,Initiative J71,Energy,47.2,42614,43
+J723,Initiative F54,Technology,64.0,10058,29
+J724,Initiative W33,Real Estate,21.3,71333,161
+J725,Initiative C65,Finance,30.7,62849,101
+J726,Initiative D2,Real Estate,47.6,29551,146
+J727,Initiative I2,Healthcare,31.8,7187,155
+J728,Initiative O77,Finance,76.7,68288,176
+J729,Initiative B0,Healthcare,45.9,15501,81
+J730,Initiative M28,Finance,41.6,68534,183
+J731,Initiative Y80,Energy,80.5,9162,118
+J732,Initiative X5,Finance,61.0,12849,90
+J733,Initiative G48,Energy,49.6,12114,129
+J734,Initiative T78,Energy,54.3,15342,167
+J735,Initiative Y35,Healthcare,70.7,50549,7
+J736,Initiative H55,Energy,34.1,56025,109
+J737,Initiative W43,Finance,48.4,14590,104
+J738,Initiative E49,Energy,13.2,10092,128
+J739,Initiative O90,Healthcare,22.0,20224,9
+J740,Initiative Y56,Healthcare,65.2,30960,189
+J741,Initiative J76,Finance,31.8,1490,107
+J742,Initiative V18,Finance,22.4,69449,49
+J743,Initiative K28,Energy,83.6,13823,29
+J744,Initiative C70,Healthcare,75.5,7522,8
+J745,Initiative X15,Healthcare,34.7,49912,65
+J746,Initiative G10,Real Estate,30.9,40591,173
+J747,Initiative L70,Technology,75.9,51096,6
+J748,Initiative T87,Finance,69.4,27344,101
+J749,Initiative K66,Finance,34.9,21373,16
+J750,Initiative U84,Real Estate,78.4,1796,84
+J751,Initiative O75,Real Estate,20.3,7305,12
+J752,Initiative V45,Energy,50.4,14764,121
+J753,Initiative U89,Finance,57.4,61278,98
+J754,Initiative N59,Real Estate,37.9,55835,30
+J755,Initiative W72,Technology,89.2,14922,181
+J756,Initiative Q29,Real Estate,18.2,75764,54
+J757,Initiative W38,Real Estate,14.2,20426,159
+J758,Initiative T54,Energy,29.6,30338,68
+J759,Initiative H17,Technology,64.4,68952,127
+J760,Initiative L74,Technology,26.2,71576,145
+J761,Initiative N65,Real Estate,53.9,69868,53
+J762,Initiative N0,Healthcare,51.8,40781,117
+J763,Initiative C84,Finance,76.9,38039,194
+J764,Initiative J34,Healthcare,61.1,78191,103
+J765,Initiative E79,Technology,16.1,65386,10
+J766,Initiative D54,Energy,33.0,9544,17
+J767,Initiative F33,Real Estate,69.9,28249,18
+J768,Initiative D4,Finance,89.5,78683,68
+J769,Initiative C2,Finance,80.3,31351,74
+J770,Initiative P51,Finance,84.6,14691,62
+J771,Initiative F96,Technology,13.7,10120,17
+J772,Initiative N1,Energy,54.7,774,81
+J773,Initiative P21,Technology,21.6,44937,108
+J774,Initiative P86,Finance,56.8,8640,101
+J775,Initiative B39,Energy,63.8,70117,114
+J776,Initiative F4,Technology,43.1,46397,152
+J777,Initiative M1,Energy,76.8,10161,96
+J778,Initiative D3,Technology,8.2,71008,199
+J779,Initiative A19,Energy,22.6,9971,57
+J780,Initiative T37,Energy,86.4,18545,63
+J781,Initiative L41,Finance,7.8,12428,108
+J782,Initiative F15,Real Estate,23.3,57074,121
+J783,Initiative B83,Finance,30.3,49916,63
+J784,Initiative H14,Healthcare,84.2,43220,21
+J785,Initiative V67,Energy,65.0,78562,44
+J786,Initiative W79,Healthcare,43.8,62276,9
+J787,Initiative D71,Energy,86.2,45366,195
+J788,Initiative U10,Finance,70.8,71192,12
+J789,Initiative X49,Finance,12.1,64211,127
+J790,Initiative C61,Energy,27.0,15692,188
+J791,Initiative M88,Technology,78.3,75147,52
+J792,Initiative C8,Real Estate,39.8,26828,28
+J793,Initiative Y59,Technology,27.3,4784,14
+J794,Initiative M70,Real Estate,9.9,32470,157
+J795,Initiative E37,Technology,64.5,17659,43
+J796,Initiative B15,Energy,72.2,68568,33
+J797,Initiative P22,Energy,87.8,29301,96
+J798,Initiative Y52,Energy,61.9,26713,156
+J799,Initiative K85,Finance,35.5,66854,76
+J800,Initiative H95,Finance,81.3,22945,1
+J801,Initiative A38,Energy,60.0,68313,49
+J802,Initiative P91,Healthcare,4.2,28765,161
+J803,Initiative D60,Real Estate,90.6,43635,116
+J804,Initiative I68,Finance,44.2,23871,149
+J805,Initiative P53,Real Estate,38.0,72327,26
+J806,Initiative A86,Real Estate,17.7,68236,179
+J807,Initiative H12,Healthcare,53.1,65999,125
+J808,Initiative R28,Technology,73.5,80481,178
+J809,Initiative S76,Technology,67.7,54772,66
+J810,Initiative I68,Finance,83.7,7521,97
+J811,Initiative A59,Finance,33.8,17947,134
+J812,Initiative L32,Energy,16.5,5450,51
+J813,Initiative K27,Healthcare,59.0,34517,146
+J814,Initiative B67,Finance,64.4,51829,108
+J815,Initiative G38,Real Estate,54.3,24238,104
+J816,Initiative T43,Energy,59.0,26733,61
+J817,Initiative D81,Finance,35.1,78772,47
+J818,Initiative L14,Technology,4.9,14317,151
+J819,Initiative R9,Technology,72.3,14459,18
+J820,Initiative N30,Energy,49.9,8877,32
+J821,Initiative R78,Real Estate,68.4,75047,105
+J822,Initiative R18,Energy,29.0,11401,164
+J823,Initiative R57,Technology,38.3,62551,13
+J824,Initiative F97,Energy,39.8,13112,54
+J825,Initiative X53,Healthcare,18.5,57766,200
+J826,Initiative E34,Finance,54.4,13775,60
+J827,Initiative K11,Finance,81.9,8674,131
+J828,Initiative H11,Finance,84.8,2698,50
+J829,Initiative W94,Real Estate,35.2,35071,102
+J830,Initiative L20,Energy,87.3,8669,35
+J831,Initiative Q83,Healthcare,56.2,22408,146
+J832,Initiative T38,Energy,42.6,8581,136
+J833,Initiative N69,Real Estate,16.9,18415,104
+J834,Initiative Z84,Healthcare,69.1,13909,141
+J835,Initiative G93,Energy,89.3,41260,54
+J836,Initiative I9,Healthcare,71.4,12342,3
+J837,Initiative Z53,Technology,65.9,31702,7
+J838,Initiative U20,Real Estate,18.2,35818,33
+J839,Initiative Z57,Energy,82.0,35561,163
+J840,Initiative V26,Real Estate,79.6,9004,111
+J841,Initiative J72,Healthcare,35.4,15503,36
+J842,Initiative P51,Healthcare,49.7,57104,24
+J843,Initiative W69,Real Estate,76.6,64380,161
+J844,Initiative K4,Healthcare,41.8,58746,109
+J845,Initiative B64,Finance,8.8,69603,112
+J846,Initiative J50,Healthcare,6.1,69833,97
+J847,Initiative R62,Energy,61.4,74570,186
+J848,Initiative M26,Technology,90.9,46676,45
+J849,Initiative A19,Finance,20.4,4385,33
+J850,Initiative F41,Energy,83.4,46611,61
+J851,Initiative B83,Technology,4.9,515,14
+J852,Initiative T19,Technology,40.0,38222,180
+J853,Initiative W51,Energy,50.0,14548,8
+J854,Initiative M11,Real Estate,39.7,41846,2
+J855,Initiative C42,Finance,47.9,40681,103
+J856,Initiative O30,Technology,21.4,15928,179
+J857,Initiative G78,Technology,9.4,51993,184
+J858,Initiative S85,Technology,32.7,21427,101
+J859,Initiative T77,Healthcare,38.9,56376,152
+J860,Initiative M51,Technology,80.1,73375,152
+J861,Initiative D50,Technology,80.5,28435,74
+J862,Initiative K74,Real Estate,15.1,27791,97
+J863,Initiative W8,Healthcare,48.4,16810,23
+J864,Initiative G39,Finance,17.6,68709,76
+J865,Initiative U1,Technology,90.7,53509,196
+J866,Initiative A83,Technology,8.7,57159,47
+J867,Initiative F1,Finance,42.5,64414,155
+J868,Initiative U85,Healthcare,18.0,44424,48
+J869,Initiative Z48,Energy,85.4,36739,40
+J870,Initiative P47,Finance,82.1,52629,57
+J871,Initiative M4,Real Estate,16.7,77406,24
+J872,Initiative O25,Healthcare,74.0,70265,198
+J873,Initiative P5,Energy,40.4,25677,73
+J874,Initiative R89,Energy,30.8,14823,175
+J875,Initiative O46,Technology,57.1,38531,111
+J876,Initiative K62,Real Estate,4.8,75803,145
+J877,Initiative Y34,Healthcare,82.5,62785,160
+J878,Initiative P42,Real Estate,20.9,32937,116
+J879,Initiative U86,Finance,73.8,73213,105
+J880,Initiative K89,Healthcare,85.6,30436,129
+J881,Initiative D57,Real Estate,69.2,28532,133
+J882,Initiative G15,Healthcare,31.2,41008,102
+J883,Initiative L28,Technology,57.1,11067,131
+J884,Initiative G69,Technology,13.9,31128,14
+J885,Initiative V27,Finance,62.7,38373,73
+J886,Initiative S15,Healthcare,27.7,36046,200
+J887,Initiative A54,Technology,62.2,40301,29
+J888,Initiative O95,Real Estate,59.3,75433,38
+J889,Initiative K58,Healthcare,36.0,15829,153
+J890,Initiative U47,Healthcare,49.6,7805,53
+J891,Initiative Q40,Technology,29.1,24042,149
+J892,Initiative P90,Energy,50.9,41139,21
+J893,Initiative Q54,Real Estate,52.2,9663,38
+J894,Initiative V10,Real Estate,76.0,50860,99
+J895,Initiative V62,Energy,84.1,53689,80
+J896,Initiative Q31,Healthcare,62.9,34716,178
+J897,Initiative W43,Finance,72.9,60392,175
+J898,Initiative D40,Real Estate,15.5,28078,42
+J899,Initiative L13,Finance,88.0,12216,15
+J900,Initiative E95,Technology,18.6,29522,169
+J901,Initiative V86,Finance,63.6,38426,192
+J902,Initiative O87,Energy,89.3,31946,176
+J903,Initiative S12,Energy,17.0,48091,143
+J904,Initiative E70,Finance,74.9,32676,89
+J905,Initiative O63,Healthcare,19.8,73723,29
+J906,Initiative V25,Real Estate,35.5,63588,114
+J907,Initiative F54,Real Estate,53.6,14490,146
+J908,Initiative I69,Energy,67.4,60874,115
+J909,Initiative R99,Technology,62.4,75773,15
+J910,Initiative B9,Real Estate,60.0,3153,145
+J911,Initiative N74,Healthcare,87.0,68979,59
+J912,Initiative X61,Healthcare,83.3,14202,156
+J913,Initiative E2,Healthcare,88.9,80121,63
+J914,Initiative J49,Real Estate,72.5,52929,174
+J915,Initiative C74,Technology,13.3,24208,182
+J916,Initiative U66,Technology,66.1,35879,192
+J917,Initiative L59,Real Estate,53.9,65381,104
+J918,Initiative D98,Energy,36.5,39246,83
+J919,Initiative J73,Technology,44.3,67214,140
+J920,Initiative D75,Energy,10.5,63078,124
+J921,Initiative S24,Finance,56.0,13223,39
+J922,Initiative P99,Real Estate,1.3,6827,119
+J923,Initiative H39,Real Estate,67.1,13922,93
+J924,Initiative O36,Technology,29.0,74852,39
+J925,Initiative N47,Energy,8.6,32397,135
+J926,Initiative X0,Finance,80.0,2159,30
+J927,Initiative S7,Technology,27.7,38625,169
+J928,Initiative V2,Technology,25.3,25095,53
+J929,Initiative G40,Technology,74.6,52195,47
+J930,Initiative L34,Healthcare,29.2,55304,19
+J931,Initiative Y73,Healthcare,15.5,55779,110
+J932,Initiative N59,Technology,55.2,57517,65
+J933,Initiative M24,Energy,11.2,38183,85
+J934,Initiative Z52,Finance,39.9,46532,42
+J935,Initiative T1,Real Estate,64.7,28043,93
+J936,Initiative A1,Energy,44.5,16010,149
+J937,Initiative L73,Finance,71.3,20580,92
+J938,Initiative L32,Healthcare,1.5,1666,126
+J939,Initiative Q88,Energy,41.9,12719,79
+J940,Initiative A1,Technology,5.2,28835,72
+J941,Initiative C63,Real Estate,66.8,26401,153
+J942,Initiative C13,Energy,21.4,29310,196
+J943,Initiative B38,Healthcare,84.9,36440,33
+J944,Initiative P82,Finance,87.6,7792,147
+J945,Initiative K76,Real Estate,2.5,26237,148
+J946,Initiative P90,Healthcare,18.3,75459,114
+J947,Initiative M58,Healthcare,82.0,78573,169
+J948,Initiative B48,Real Estate,77.0,35479,16
+J949,Initiative W89,Energy,85.8,64738,73
+J950,Initiative V4,Healthcare,50.8,57138,143
+J951,Initiative H63,Healthcare,70.1,15865,88
+J952,Initiative D52,Real Estate,38.0,35660,25
+J953,Initiative T18,Technology,53.4,3419,191
+J954,Initiative U41,Finance,29.5,31160,64
+J955,Initiative D35,Healthcare,16.6,48526,150
+J956,Initiative T73,Energy,73.4,46668,57
+J957,Initiative U52,Real Estate,35.9,37515,200
+J958,Initiative Q20,Technology,36.5,5525,108
+J959,Initiative Z70,Technology,53.2,76493,52
+J960,Initiative E32,Technology,39.6,14465,74
+J961,Initiative M18,Technology,25.6,60994,8
+J962,Initiative M41,Healthcare,19.9,22608,181
+J963,Initiative Z56,Technology,28.3,53772,84
+J964,Initiative C37,Healthcare,41.6,54200,172
+J965,Initiative U69,Technology,56.6,75190,129
+J966,Initiative W50,Energy,51.1,74176,83
+J967,Initiative D87,Real Estate,48.5,14748,5
+J968,Initiative H98,Healthcare,87.9,22790,157
+J969,Initiative D49,Real Estate,53.4,4309,179
+J970,Initiative O73,Real Estate,16.9,14140,54
+J971,Initiative J21,Finance,59.7,49197,130
+J972,Initiative A90,Energy,58.8,44994,178
+J973,Initiative H37,Technology,32.3,36027,97
+J974,Initiative K65,Healthcare,88.8,43628,96
+J975,Initiative J71,Energy,14.6,35031,26
+J976,Initiative L75,Energy,50.7,17828,129
+J977,Initiative J26,Healthcare,64.7,64716,119
+J978,Initiative C27,Real Estate,77.4,68272,141
+J979,Initiative E12,Finance,19.6,15422,73
+J980,Initiative Q2,Healthcare,24.8,39300,1
+J981,Initiative H0,Real Estate,65.0,9830,48
+J982,Initiative R89,Finance,23.3,52789,64
+J983,Initiative Q84,Technology,66.5,4698,92
+J984,Initiative S0,Energy,22.5,6837,72
+J985,Initiative P18,Real Estate,67.2,53307,180
+J986,Initiative X2,Energy,50.5,53535,107
+J987,Initiative I32,Technology,23.2,55769,35
+J988,Initiative P85,Finance,84.7,41224,95
+J989,Initiative T78,Technology,77.6,63939,167
+J990,Initiative W58,Technology,22.0,23641,34
+J991,Initiative B63,Finance,19.5,75050,48
+J992,Initiative L68,Healthcare,81.1,6374,101
+J993,Initiative O38,Healthcare,31.5,45778,68
+J994,Initiative E22,Healthcare,55.6,73602,196
+J995,Initiative I83,Real Estate,64.0,47392,181
+J996,Initiative S58,Technology,81.1,11917,54
+J997,Initiative O85,Technology,44.5,78803,177
+J998,Initiative Y9,Energy,42.9,21497,71
+J999,Initiative J35,Technology,89.1,24760,76
+J1000,Initiative D52,Real Estate,55.2,67316,86
