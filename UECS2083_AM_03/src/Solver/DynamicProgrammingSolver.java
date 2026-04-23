@@ -12,19 +12,13 @@ import exception.*;
 /**
  * Solves the Job Sequencing problem using Dynamic Programming with bitmask-based state space.
  * 
- * <h2>Complexity & Memory Safety</h2>
- * <ul>
- *   <li><strong>Time:</strong> O(n × 2^D × D) where n = projects, D = max deadline (pseudo-polynomial)</li>
- *   <li><strong>Space:</strong> O(n × 2^D) for DP and reconstruction tables</li>
- * </ul>
- * 
- * <p>The maximum safe deadline is computed dynamically ({@link #computeSafeMaxDeadline(int)}) based on
- * available JVM heap memory using the formula: D ≤ log₂(availableMemory / (16 + 16*n))
- * with 10% safety margin. This eliminates fixed magic numbers and adapts to runtime system resources.
- * 
- * <p>When input deadline exceeds the computed safe limit, the solver prompts the user to either
- * modify input, choose a different algorithm, or accept the memory risk.
- */
+Complexity & Memory Safety
+The algorithm runs in O(n × 2^D × D) time and uses O(n × 2^D) space, 
+where n is the number of projects and D is the maximum deadline.To avoid memory issues, a safe maximum deadline is calculated based on available system memory, 
+with a safety margin.This removes fixed limits and allows the program to adapt to different systems
+If the deadline exceeds the safe limit, the user can adjust the input, choose another algorithm, 
+or continue with potential memory risk.
+*/
 
 public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     /**
@@ -45,14 +39,13 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     }
 
     /**
-     * Dynamically computes the maximum safe deadline based on available JVM heap memory.
-     * 
-     * <p>Formula: D ≤ log₂(availableMemory / (16 + 16*n))
-     * <br>Memory per state = (16 + 16*n) bytes, where n = number of projects.
-     * <br>Applies 10% safety margin; clamps to {@value #ABSOLUTE_MAX_DEADLINE}.
-     * 
-     * @param numProjects the number of projects
-     * @return the maximum safe deadline that won't exceed available heap memory
+     * Computes the maximum safe deadline based on available JVM memory.
+     *
+     * Uses: D ≤ log₂(availableMemory / (16 + 16*n)), with a 10% safety margin.
+     * Clamped to {@value #ABSOLUTE_MAX_DEADLINE}.
+     *
+     * @param numProjects number of projects
+     * @return safe maximum deadline within memory limits
      */
     private int computeSafeMaxDeadline(int numProjects) {
         Runtime runtime = Runtime.getRuntime();
@@ -69,20 +62,18 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     }
 
     /**
-     * Solves the job sequencing problem using dynamic programming with bitmask state representation.
-     * 
-     * <p>Validates that input deadline is within safe memory bounds computed dynamically.
-     * If exceeded, prompts user to modify input, switch algorithms ({@link BacktrackingSolver},
-     * {@link GreedyDSUSolver}, or {@link GeneticAlgorithmSolver}), or proceed at risk.
-     * Otherwise executes optimal DP with O(2^D) memory and O(n × 2^D × D) time.
-     * 
-     * @param projects the list of investment projects; cannot be null or empty
-     * @throws UserInputModificationException if maxDeadline exceeds safe limit and user chooses option 1 (modify input)
-     * @see #computeSafeMaxDeadline(int) for dynamic memory-based deadline calculation
+     * Solves job sequencing using dynamic programming with a bitmask.
+     *
+     * Check if the deadline is within safe memory limits. If not, the user can
+     * modify input, switch algorithms, or continue at risk. Otherwise runs DP with
+     * O(2^D) space and O(n × 2^D × D) time.
+     *
+     * @param projects list of projects (not null or empty)
+     * @throws UserInputModificationException if user chooses to modify input
+     * @see #computeSafeMaxDeadline(int)
      */
     @Override
     public void solve(List<InvestmentProject> projects) {
-        // records start time to measure execution duration
         long startTime = System.currentTimeMillis();
 
         // 1. Reset state
@@ -106,7 +97,6 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         // Dynamically compute the safe maximum deadline based on available JVM memory
         int safeMaxDeadline = computeSafeMaxDeadline(n);
 
-        // If deadline exceeds what memory allows, ask user what to do
         if (maxDeadline > safeMaxDeadline) {
             System.out.println("==================================================");
             System.out.println("[WARNING] Maximum deadline constraint violated!");
@@ -197,12 +187,10 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
                 return Double.compare(b.getProfit(), a.getProfit());
             }
         });
-        // -> this makes the DP more likely to consider high-profit choices first.
 
         // 4. DP table: use two arrays for space optimization to O(2^d)
         double[] prevRow = new double[maxMask];
         double[] currRow = new double[maxMask];
-        // Initialize to negative infinity
         for (int mask = 0; mask < maxMask; mask++) {
             prevRow[mask] = Double.NEGATIVE_INFINITY;
             currRow[mask] = Double.NEGATIVE_INFINITY;
@@ -214,44 +202,34 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         // 5. Fill DP table using two rows for O(2^d) space
         for (int i = 0; i < n; i++) {
             InvestmentProject p = sortedProjects.get(i);
-            int d = p.getDeadline(); // deadline already validated to be <= MAX_BITMASK_DEADLINE
+            int d = p.getDeadline();
             double profit = p.getProfit();
 
-            // Reset currRow to negative infinity
             for (int mask = 0; mask < maxMask; mask++) {
                 currRow[mask] = Double.NEGATIVE_INFINITY;
             }
 
-            // explore each mask for the previous state
             for (int mask = 0; mask < maxMask; mask++) {
                 if (prevRow[mask] == Double.NEGATIVE_INFINITY) continue;
 
-                // Op1: Do not take the project
-                // record that this state came from not choosing project 
                 if (currRow[mask] < prevRow[mask]) {
                     currRow[mask] = prevRow[mask];
                     prev[i + 1][mask] = new int[]{i, mask, 0, -1};
                 }
 
-                // Op2: Try to take the project in each possible slot <= d that is free
-                // record that this state came from taking the project in this slot
                 for (int slot = d; slot >= 1; slot--) {
                     int bit = slot - 1;
-
-                    // Shift "1" to the position of "bit", Check if that position in "mask" is 0
-                    // Check if slot is free
                     if ((mask & (1 << bit)) == 0) {
-                        int newMask = mask | (1 << bit); // mark slot as used
-                        double newProfit = prevRow[mask] + profit; // profit if we take this project
+                        int newMask = mask | (1 << bit);
+                        double newProfit = prevRow[mask] + profit;
                         if (currRow[newMask] < newProfit) {
                             currRow[newMask] = newProfit;
-                            prev[i + 1][newMask] = new int[]{i, mask, 1, slot}; // record that we took project i in slot "slot"
+                            prev[i + 1][newMask] = new int[]{i, mask, 1, slot};
                         }
                     }
                 }
             }
 
-            // Swap rows: prevRow now becomes the current row for next iteration
             double[] temp = prevRow;
             prevRow = currRow;
             currRow = temp;
@@ -274,13 +252,12 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         int currentI = n;
         int currentMask = bestMask;
         while (currentI > 0) {
-            int[] info = prev[currentI][currentMask]; // load the reconstruction record
+            int[] info = prev[currentI][currentMask];
             int prevI = info[0];
             int prevMask = info[1];
             int took = info[2];
             int slot = info[3];
 
-            // if this project was selected, copy it and assign the chosen slot
             if (took == 1) {
                 InvestmentProject p = sortedProjects.get(prevI);
                 InvestmentProject copy = new InvestmentProject(p);
