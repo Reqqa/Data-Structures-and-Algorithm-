@@ -2,20 +2,22 @@ package Solver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Comparator;
 
 import algorithm.AbstractInvestmentSolver;
 import model.InvestmentProject;
 
 /**
- * Solves the Job Sequencing problem using a Greedy algorithm accelerated by
- * a Disjoint Set Union (DSU) data structure with Path Compression.
- * Time complexity: O(n log n) — dominated by sort. DSU find() runs in O(α(n))
- * amortised per call, where α is the inverse Ackermann function (~constant).
+ * Greedy solution for Job Sequencing using DSU to speed up slot lookup.
+ * Jobs are sorted by profit, and DSU helps find the latest free slot.
+ * Time: O(n log n) due to sorting; DSU operations are near constant.
  */
 public class GreedyDSUSolver extends AbstractInvestmentSolver {
 
-    // DSU parent array (1-indexed). parent[i] = i means slot i is free.
-    // Slot 0 is the sentinel — find() returning 0 means no free slot exists.
+    // DSU parent array (1-indexed)
+    // parent[i] == i -> slot i is free
+    // parent[i] < i  -> check earlier slot
+    // parent[0] = 0  -> no slot available (sentinel)
     private int[] parent;
 
     @Override
@@ -44,46 +46,41 @@ public class GreedyDSUSolver extends AbstractInvestmentSolver {
             }
         }
 
-        // 3. Initialise DSU — every slot points to itself (all slots free)
+        // 3. Initialise DSU: every slot points to itself (all slots are free initially)
         initParent(maxDeadline);
 
-        // 4. Sort projects by profit descending
-        // InvestmentProject.compareTo() already defines profit-descending order
+        // 4. Sort projects by profit (descending)
         List<InvestmentProject> sortedProjects = new ArrayList<>(projects);
         Collections.sort(sortedProjects);
 
-        // 5. Greedy assignment — DSU find() replaces the O(n) boolean array scan
+        // 5. Greedy assignment: DSU find() replaces the O(n) boolean array scan
         for (InvestmentProject project : sortedProjects) {
 
-            // find() returns the latest free slot at or before this deadline.
-            // Returns 0 (sentinel) if no slot is available.
             int availableSlot = find(project.getDeadline());
 
             if (availableSlot == 0) {
-                continue; // no slot within deadline — project is unselected
+                continue; // no slot available for this project, skip it
             }
 
-            // Deep copy before mutation — prevents shared-state bugs across runs
+            // Copy project and assign slot
             InvestmentProject scheduled = new InvestmentProject(project);
             scheduled.setAssignedSlot(availableSlot);
 
             this.selectedPortfolio.add(scheduled);
             this.maxExpectedReturn += scheduled.getProfit();
 
-            // Mark this slot as used — next find() on this slot jumps to slot-1
+            // Mark slot as used so next lookup moves to earlier slot
             parent[availableSlot] = availableSlot - 1;
         }
 
         // 6. Sort selected portfolio by assigned slot for clean output
         this.selectedPortfolio.sort(
-                java.util.Comparator.comparingInt(InvestmentProject::getAssignedSlot));
+                Comparator.comparingInt(InvestmentProject::getAssignedSlot));
 
         // 7. Record execution time
         this.executionTimeInMilliseconds = System.currentTimeMillis() - startTime;
     }
 
-    // Initialises the parent array. Each slot points to itself — meaning all
-    // slots are free. Slot 0 is pre-set as sentinel by the same loop.
     private void initParent(int maxDeadline) {
         parent = new int[maxDeadline + 1];
         for (int i = 0; i <= maxDeadline; i++) {
@@ -91,19 +88,16 @@ public class GreedyDSUSolver extends AbstractInvestmentSolver {
         }
     }
 
-    /**
-     * Path-compressed DSU find. Returns the latest free slot reachable from x.
-     * Every node along the path is pointed directly at the root (path compression),
-     * achieving O(α(n)) amortised per call.
-     * Union-by-rank is intentionally omitted — merges always go in one fixed
-     * direction (used slot → slot below), so rank balancing has no benefit here.
+     /**
+     * Finds the latest free slot for x.
+     * Follows pointers to earlier slots if needed.
+     * Path compression makes future lookups faster.
      */
     private int find(int x) {
         if (parent[x] == x) {
-            return x; // x is free (or sentinel 0)
+            return x; 
         }
-        // Recurse and compress: point x directly at the final root
-        parent[x] = find(parent[x]);
+        parent[x] = find(parent[x]); // Path compression
         return parent[x];
     }
 
