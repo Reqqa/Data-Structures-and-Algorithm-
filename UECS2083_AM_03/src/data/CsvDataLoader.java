@@ -1,6 +1,5 @@
 package data;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class CsvDataLoader implements IDataLoader {
             return loadedProjects;
         }
 
-        try (java.io.InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
          Scanner fileScanner = (is != null) ? new Scanner(is) : null) {
 
             if (is == null) {
