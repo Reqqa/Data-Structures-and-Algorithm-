@@ -7,14 +7,14 @@ import java.util.Scanner;
 /**
  * Solves the Job Sequencing problem using Dynamic Programming with bitmask-based state space.
  * 
-<h2>Complexity & Memory Safety</h2>
-<p>The algorithm runs in O(n × 2^D × D) time and uses O(n × 2^D) space, 
-where n is the number of projects and D is the maximum deadline.</p>
-<p>To avoid memory issues, a safe maximum deadline is calculated based on available system memory, 
-with a safety margin.</p>
-<p>This removes fixed limits and allows the program to adapt to different systems.</p>
-<p>If the deadline exceeds the safe limit, the user can adjust the input, choose another algorithm, 
-or continue with potential memory risk.</p>
+Complexity & Memory Safety
+The algorithm runs in O(n × 2^D × D) time and uses O(n × 2^D) space, 
+where n is the number of projects and D is the maximum deadline.
+To avoid memory issues, a safe maximum deadline is calculated based on available system memory, 
+with a safety margin.
+This removes fixed limits and allows the program to adapt to different systems.
+If the deadline exceeds the safe limit, the user can adjust the input, choose another algorithm, 
+or continue with potential memory risk.
 */
 
 public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
@@ -38,7 +38,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     /**
      * Computes the maximum safe deadline based on available JVM memory.
      *
-     * <p>Uses: D ≤ log₂(availableMemory / (16 + 16*n)), with a 10% safety margin.
+     * Uses: D ≤ log₂(availableMemory / (16 + 16*n)), with a 10% safety margin.
      * Clamped to {@value #ABSOLUTE_MAX_DEADLINE}.
      *
      * @param numProjects number of projects
@@ -61,7 +61,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     /**
      * Solves job sequencing using dynamic programming with a bitmask.
      *
-     * <p>Checks if the deadline is within safe memory limits. If not, the user can
+     * Checks if the deadline is within safe memory limits. If not, the user can
      * modify input, switch algorithms, or continue at risk. Otherwise runs DP with
      * O(2^D) space and O(n × 2^D × D) time.
      *
