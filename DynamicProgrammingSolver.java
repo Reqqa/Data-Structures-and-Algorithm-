@@ -7,23 +7,23 @@ import java.util.Scanner;
 /**
  * Solves the Job Sequencing problem using Dynamic Programming with bitmask-based state space.
  * 
-Complexity & Memory Safety
-The algorithm runs in O(n × 2^D × D) time and uses O(n × 2^D) space, 
-where n is the number of projects and D is the maximum deadline.
-To avoid memory issues, a safe maximum deadline is calculated based on available system memory, 
-with a safety margin.
-This removes fixed limits and allows the program to adapt to different systems.
-If the deadline exceeds the safe limit, the user can adjust the input, choose another algorithm, 
-or continue with potential memory risk.
-*/
+ * Complexity & Memory Safety
+ * The algorithm runs in O(n x 2^D x D) time and uses O(n x 2^D) space,
+ * where n is the number of projects and D is the maximum deadline.
+ * To avoid memory issues, a safe maximum deadline is calculated based on available system memory,
+ * with a safety margin.
+ * This removes fixed limits and allows the program to adapt to different systems.
+ * If the deadline exceeds the safe limit, the user can adjust the input, choose another algorithm,
+ * or continue with potential memory risk.
+ */
 
 public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     /**
      * Theoretical maximum deadline to prevent integer overflow.
-     * The actual safe limit is computed dynamically via {@link #computeSafeMaxDeadline(int)}.
+     * The actual safe limit is computed dynamically via computeSafeMaxDeadline(int).
      */
     private static final int ABSOLUTE_MAX_DEADLINE = 25;
-    
+
     /** Tracks the actual algorithm used when fallback occurs. */
     private String actualAlgorithmName = null;
 
@@ -38,8 +38,8 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
     /**
      * Computes the maximum safe deadline based on available JVM memory.
      *
-     * Uses: D ≤ log₂(availableMemory / (16 + 16*n)), with a 10% safety margin.
-     * Clamped to {@value #ABSOLUTE_MAX_DEADLINE}.
+     * Uses: D <= log2(availableMemory / (16 + 16*n)), with a 10% safety margin.
+     * Clamped to ABSOLUTE_MAX_DEADLINE.
      *
      * @param numProjects number of projects
      * @return safe maximum deadline within memory limits
@@ -54,7 +54,6 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         long maxStates = safeMemory / memoryPerState;
         int maxD = (maxStates > 0) ? (int) Math.floor(Math.log(maxStates) / Math.log(2)) : 0;
 
-        // Clamp to absolute maximum to prevent overflow
         return Math.min(maxD, ABSOLUTE_MAX_DEADLINE);
     }
 
@@ -63,11 +62,10 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
      *
      * Checks if the deadline is within safe memory limits. If not, the user can
      * modify input, switch algorithms, or continue at risk. Otherwise runs DP with
-     * O(2^D) space and O(n × 2^D × D) time.
+     * O(2^D) space and O(n x 2^D x D) time.
      *
      * @param projects list of projects (not null or empty)
      * @throws UserInputModificationException if user chooses to modify input
-     * @see #computeSafeMaxDeadline(int)
      */
     @Override
     public void solve(List<InvestmentProject> projects) {
@@ -97,34 +95,36 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         if (maxDeadline > safeMaxDeadline) {
             System.out.println("==================================================");
             System.out.println("[WARNING] Maximum deadline constraint violated!");
-            System.out.println(String.format(
-                "  Input maxDeadline: %d\n" +
-                "  Safe memory limit: %d\n" +
-                "  Reason: Exponential state space O(2^D) = %,d states\n" +
-                "  Available heap: %.1f MB\n",
-                maxDeadline, safeMaxDeadline, (long)Math.pow(2, maxDeadline),
-                (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0)
-            ));
+            System.out.println("  Input maxDeadline  : " + maxDeadline);
+            System.out.println("  Safe memory limit  : " + safeMaxDeadline);
+            System.out.println("  Reason             : Exponential state space O(2^D) = "
+                    + String.format("%,d", (long) Math.pow(2, maxDeadline)) + " states");
+            System.out.printf ("  Available heap     : %.1f MB%n",
+                    (Runtime.getRuntime().maxMemory()
+                    - Runtime.getRuntime().totalMemory()
+                    + Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0));
             System.out.println("Select one of the following options:");
             System.out.println("  1. Modify your input (exit and restart with new data)");
             System.out.println("  2. Continue with BacktrackingSolver (guaranteed optimal, slower)");
             System.out.println("  3. Continue with GreedyDSUSolver (approximate, fast)");
             System.out.println("  4. Continue with GeneticAlgorithmSolver (approximate, adaptive)");
             System.out.print("Enter your choice (1-4): ");
-            
-            Scanner scanner = new Scanner(System.in);
-            String choice = scanner.nextLine().trim();
-            
+
+            String choice;
+            try (Scanner scanner = new Scanner(System.in)) {
+                choice = scanner.nextLine().trim();
+            }
+
             if (choice.equals("1")) {
                 System.out.println("[INFO] Exiting solver. Please modify your input and try again.");
-                System.out.println("==================================================\n");
+                System.out.println("==================================================");
                 throw new UserInputModificationException(
-                    String.format("Max deadline %d exceeds safe limit %d. User requested input modification.", 
-                    maxDeadline, safeMaxDeadline)
+                    "Max deadline " + maxDeadline + " exceeds safe limit " + safeMaxDeadline
+                    + ". User requested input modification."
                 );
             } else if (choice.equals("2")) {
                 System.out.println("[INFO] Proceeding with BacktrackingSolver (guaranteed optimal)...");
-                System.out.println("==================================================\n");
+                System.out.println("==================================================");
                 BacktrackingSolver backtracker = new BacktrackingSolver();
                 backtracker.solve(projects);
                 this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
@@ -134,7 +134,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
                 return;
             } else if (choice.equals("3")) {
                 System.out.println("[INFO] Proceeding with Greedy DSU Solver (approximate, fast)...");
-                System.out.println("==================================================\n");
+                System.out.println("==================================================");
                 GreedyDSUSolver greedy = new GreedyDSUSolver();
                 greedy.solve(projects);
                 this.maxExpectedReturn = greedy.getMaxExpectedReturn();
@@ -144,7 +144,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
                 return;
             } else if (choice.equals("4")) {
                 System.out.println("[INFO] Proceeding with Genetic Algorithm Solver (approximate, adaptive)...");
-                System.out.println("==================================================\n");
+                System.out.println("==================================================");
                 GeneticAlgorithmSolver genetic = new GeneticAlgorithmSolver();
                 genetic.solve(projects);
                 this.maxExpectedReturn = genetic.getMaxExpectedReturn();
@@ -154,6 +154,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
                 return;
             } else {
                 System.out.println("[ERROR] Invalid choice. Proceeding with Backtracking Solver by default.");
+                System.out.println("==================================================");
                 BacktrackingSolver backtracker = new BacktrackingSolver();
                 backtracker.solve(projects);
                 this.maxExpectedReturn = backtracker.getMaxExpectedReturn();
@@ -184,7 +185,7 @@ public class DynamicProgrammingSolver extends AbstractInvestmentSolver {
         }
         prevRow[0] = 0.0;
 
-        int[][][] prev = new int[n + 1][maxMask][4]; 
+        int[][][] prev = new int[n + 1][maxMask][4];
 
         // 5. Fill DP table using two rows for O(2^d) space
         for (int i = 0; i < n; i++) {
